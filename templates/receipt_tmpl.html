@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="ncbi_app" content="cligen_dosage" />
+<meta name="ncbi_pdid" content="receipt" />
+
+{% if key %}
+<meta name="ncbi_ebrm_id" content="{{ key }}" />
+{% endif %}
+{% if sym %}
+<meta name="ncbi_sym" content="{{ sym }}" />
+{% endif %}
+{% if sub_loc %}
+<meta name="ncbi_sub_loc" content="{{ sub_loc }}" />
+{% endif %}
+<title>Contact ClinGen</title>
+<link href="https://www.ncbi.nlm.nih.gov/projects/genome/NCBI_core/header.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/core/jig/1.14.8/js/jig.min.js"></script>
+<link href="clingen.css" rel="stylesheet" type="text/css" />
+<link href="footnote.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery("#last_footnote").load("footnote.html", function() {
+            jQuery.ui.jig.scan(this, {
+                                      'widgets': ['ncbihelpwindow'] 
+            });      
+           
+            var dt = new Date();
+            var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
+                             "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
+                             "-04:00";
+  
+            var link_str = "/sites/ehelp?&Ncbi_App=" +
+                             jQuery('meta[name=ncbi_app]').attr('content') +
+                             "&Page=" +
+                             jQuery('meta[name=ncbi_pdid]').attr('content') +
+                             "&Time=" + time_str +
+                             "&Data=+PageURL:+" +
+                             window.location.href +  
+                             ";";  
+            jQuery('#help-desk-link').attr('href',link_str);
+        }); 
+});
+</script>
+</head>
+<body>
+<div class="grid">
+  <div class= "col ten_col" >
+      <div class="col left_col">
+          <span id="clingen_small_header">
+          <img id="clingen_small_logo" src="img2/clingen_logo.jpg" alt="Clingen Logo" />
+          ClinGen Dosage Sensitivity Curation Page
+          </span>
+      </div>
+
+      <div class="col right_col">
+        <div  class="side_panel">
+            <div class="side_panel_head">
+               <h3> Links </h3>
+            </div>
+            <ul>
+               <li><a href="index.shtml">ClinGen Curation Home Page</a></li>
+               <li><a href="https://www.clinicalgenome.org">ClinGen Home Page</a></li>
+               <li><a href="help.shtml">Help with this site</a></li>
+               <li><a href="faq.shtml">FAQ</a></li>
+               <li><a href="contact.shtml" title="Contact Us">Report a gene or region</a></li>
+            </ul>
+        </div>
+      </div>
+
+      <div id="response" class="col">
+        <p>Thank you for contacting us. Your message has been received and assigned tracking number <em>{{ key }}</em>. Someone will respond to your message shortly.</p>
+      </div><!--end response-->
+
+      <div id="last_footnote">
+      </div>
+  </div><!--end ten_col-->
+</div><!--end grid-->
+</body>
+</html>

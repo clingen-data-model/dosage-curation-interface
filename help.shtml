@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="ncbi_app" content="cligen_dosage" />
+<meta name="ncbi_pdid" content="help" />
+<title>ClinGen Genome Dosage Map: Help</title>
+<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/core/jig/1.14.8/js/jig.min.js"></script>
+<link href="https://www.ncbi.nlm.nih.gov/projects/genome/NCBI_core/header.css" rel="stylesheet" type="text/css" />
+<link href="clingen.css" rel="stylesheet" type="text/css" />
+<link href="footnote.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+  
+          var dt = new Date();
+          var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
+                         "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
+                         "-04:00";
+  
+          var link_str = "/sites/ehelp?&Ncbi_App=" +
+                         jQuery('meta[name=ncbi_app]').attr('content') +
+                         "&Page=" +
+                         jQuery('meta[name=ncbi_pdid]').attr('content') +
+                         "&Time=" + time_str +
+                         "&Data=+PageURL:+" +
+                         window.location.href +  
+                         ";";  
+          jQuery('#help-desk-link').attr('href',link_str);
+  });
+</script>
+</head>
+<body>
+<div class="grid">
+  <div class="col ten_col">
+    <div class="prj_header">
+      <div class = "header_img" >
+        <p><img id="img_logo" src="img2/clingen_logo.jpg" alt="ClinGen Logo" /></p>
+      </div>
+      <div class="header_text">
+         <h1>ClinGen Dosage Sensitivity Map</h1>
+         <p class="description"> The Clinical Genome Resource (ClinGen) consortium is
+                              curating genes and regions of the genome to assess whether there is evidence
+                              to support that these genes/regions are dosage sensitive and
+                              should be targeted on a cytogenomic array.</p>
+         <p class="description"> All data are shown in GRCh37 and GRCh38 coordinates.</p>
+      </div>
+    </div> <!-- end prj_header div-->
+
+    <div id="main_content" class="col left_col">
+      <div id="help" class="subsection">
+	<h2>Using the ClinGen Genome Dosage Map Resource</h2>
+        <ul id="toc">
+       	  <li><a href="#find_data">Finding data</a></li>
+          <li><a href="#pages">Using the pages</a></li>
+          <li><a href="#review">How the committee reviews data</a></li>
+        </ul>
+        <div id="find_data" class="help_sections">
+          <a name="find_data"></a><h3>Finding Data</h3>
+          <p>All data has been entered in the database using coordinates on GRCh37. Using the search box on the left (labeled 'Search by Gene Name') you can enter a gene symbol. We support <a href="http://www.genenames.org" target="_blank">HGNC</a> approved gene symbols. As you type, possible gene symbols will appear below the input. If you start typing a gene alias, the HGNC symbol will appear (if our database knows about this alias). When you select 'Go'you will be taken directly to the page for that gene.</p>
+          <p>You can also look up issues by location in the genome (based on GRCh37 (hg19) coordinates. Enter the location in the text box to the right (labeled 'Search by Location'). You should enter this using the following nomenclature 'chr_name:start-stop'. For example: chr1:1,000,000-5,000,000. Hitting go will return a list of all issues overlapping the defined region.</p>
+          <p>Two tables will be returned, one for gene regions and one for region issues. 
+             Gene issues are based on a single gene, while regions can overlap multiple genes. 
+             The columns in each table is:
+            <ul>
+              <li>ISCA ID: our internal id. Click on this link to go to the page for the region or gene.</li>
+              <li>Curation Status: Where the gene or region is in our curation pipeline.</li>
+              <li>Region location: the location defined by this issue.</li>
+              <li>Gene Symbol: The gene symbol  (only on Gene Issues).</li>
+              <li>Relationship to the search region: contained means this issue is completely within the search region while overlap means this issue only overlaps the search region.</li>
+            </ul>
+          </p>
+        </div>
+        <div id="pages" class="help_sections">
+          <a name="pages"></a><h3>Using the pages</h3>
+          <p>Each issue or region page provides you with the following information:</p>
+          <ul>
+          <li><span class="strong">Overview:</span>The section at the top of the page provides information on the genomic location as well as links to relevant resources (Entrez Gene, PubMed, Omim or Gene Reviews) is there is information available.</li>
+          <li><span class="strong">Genome View:</span>This section shows a graphical genome view of the region of interest. The tracks shown are the genome sequence, NCBI genes and the ISCA curated data track (<a href="https://www.ncbi.nlm.nih.gov/dbvar/studies/nstd45/" target="_blank">nstd45</a>).</li>
+          <li><span class="strong">Evidence for Loss of Function Phenotype:</span> evidence that loss of this region leads to a phenotype. Information is only shown when the committee has completed their curation.</li>
+          <li><span class="strong">Evidence for Triplosensitive Phenotype:</span> Evidence that a whole-gene duplication or duplication of the genomic region leads to a specific phenotype. Evidence regarding partial-gene duplications will not be considered in this category. Partial-gene duplications shown to result in loss-of-function may be counted amongst the evidence within the "loss of function phenotype" category. Information is only shown when the committee has completed their curation.</li>
+           <!--<p><span class="strong">ISCA Targeting Decision:</span> Recommendation on whether this gene/region should be targeted on future CMA designs.</p>-->
+          </ul>
+          <p>Each page has a 'Print Full Report' option. This will provide a printer friendly view of the data on the page. </p>
+        </div>
+        <div id="review" class="help_sections">
+          <a name="review"></a>
+          <h3>How the committee reviews data</h3>
+          <p>The evidence-based review (EBR) process has been widely used to develop standards for medical decision-making and to explore complex clinical questions.  This approach can be applied to genetic tests, such as chromosomal microarrays (CMA), in order to assist in the clinical interpretation of certain copy number variants (CNVs), particularly those that are rare, and guide array design for optimal clinical utility.  To address these issues, The Clinical Genome Resource (ClinGen) consortium has established an EBR Work Group charged with building a framework to systematically assess the potential clinical relevance of CNVs throughout the genome.</p>
+          <p>This group has developed a rating system enumerating the evidence supporting or refuting <strong><em>dosage sensitivity</em></strong> for individual genes and regions that considers the following criteria:  number of causative mutations reported; patterns of inheritance; consistency of phenotype; evidence from large-scale case-control studies; mutational mechanisms; data from public genome variation databases; and expert consensus opinion.  The system is designed to be dynamic in nature, with regions being reevaluated periodically to incorporate emerging evidence.</p>
+          <p>**Please note:  This website is intended to be used as a tool to categorize evidence supporting or refuting the <strong><em>dosage sensitivity (i.e. haploinsufficiency or triplosensitivity) </em></strong>of a particular gene or genomic region.  Categorizing evidence for other mutational mechanisms (for example, gain of function mutations resulting in demonstrable phenotype) is beyond the scope of this website.  Additional sources must be consulted to obtain complete information about the mutation spectrum and associated phenotypic consequences for any given gene/region.**</p>
+          <h3>The ClinGen Consortium Rating System</h3>
+          <p>Since CMA can detect losses and gains of genomic material, each genomic region will have two independent ratings:  a loss of function rating to address deletions and loss of function mutations resulting in haploinsufficiency and a triplosensitivity rating to address whole gene duplications.  Loss of function and triplosensitivity ratings range from 0 to 3, with increasing levels of evidence suggesting that dosage sensitivity results in a particular phenotype.</p>
+          <ul>
+            <li><span class="strong">3:Sufficient evidence suggesting dosage sensitivity is associated with clinical phenotype.</span>
+These regions will have loss of function mutations or duplication events reported in at least three unrelated probands with a similar, well-described phenotype.  These mutations must come from at least two independent publications; if the three mutations are found in a single compelling publication, some supporting secondary evidence (e.g. unpublished entries in a locus specific database, cases from databases such as the ISCA database, etc.) must be present.  Loss of function mutations or duplications in these regions should not be observed at high frequency within normal populations; or, if there have been associations between the particular clinical phenotype and incomplete penetrance and/or variable expressivity, these relationships should be well understood.</li>
+            <li><span class="strong">2:Emerging evidence suggesting dosage sensitivity is associated with clinical phenotype.</span>
+These regions may be associated with two different loss of function mutations or duplication events in unrelated probands with a similar phenotype.  Alternatively, these regions may be observed amongst clinical populations at a statistically significant level in more than one large-scale case-control series, but may not have a well-described phenotypic association.  Finally, these regions may have more than two loss of function mutations or duplication events with a similar and specific phenotype, but the mutations are inherited, or the regions are not supported as significant in case-control series.</li>
+	    <li><span class="strong">1:Little evidence suggesting dosage sensitivity is associated with clinical phenotype.</span>
+This category will encompass regions for which only a single loss of function mutation or duplication has been reported.   Regions that have been observed significantly more often in cases compared to controls in large-scale case-control series without a clear phenotypic association may also fall into this category.</li>
+	    <li><span class="strong">0:No evidence to suggest that dosage sensitivity is associated with clinical phenotype.</span>
+No loss of function mutations or duplications reported in patients with a clinical phenotype.</li>
+	    <li><span class="strong">40: Dosage sensitivity unlikely.</span>If there is only evidence suggesting that a region is NOT subject to dosage sensitivity, the region will receive a rating of "dosage sensitivity unlikely," which is designated by the score "40."</li>
+	    <li><span class="strong">30: Gene associated with autosomal recessive phenotype.</span>If the gene is only associated with an autosomal recessive condition, it will receive a rating of "gene associated with autosomal recessive condition," which is designated by the score "30."</li>
+          </ul>
+          <h3>Potential Clinical Interpretations</h3>
+          <p>In general, the loss of function rating for an individual gene may be used to guide the clinical interpretation of deletions involving a particular gene, and the triplosensitivity rating may be used to guide the interpretation of duplications.  Using the clinical interpretation categories put forth by the ACMG, the following are suggestions for possible clinical interpretation of deletions/duplications based on loss of function/triplosensitivity rating, respectively:</p>
+          <table id="path_scores" data-jig="ncbigrid" summary="Clinical interpretation Scores">
+	    <caption>Clinical interpretation scores</captions>
+     	    <thead>
+              <tr>
+            	<th scope="col">Rating</th>
+            	<th scope="col">Possible Clinical Interpretation*</th>
+             </tr>
+            </thead>
+            <tbody>
+              <tr>
+            	<td>3</td>
+                <td>Sufficient evidence for dosage pathogenicity</td>
+              </tr>
+              <tr>
+            	<td>2</td>
+                <td>Some evidence for dosage pathogenicity</td>
+              </tr>
+              <tr>
+            	<td>1</td>
+                <td>Little evidence for dosage pathogenicity</td>
+              </tr>
+              <tr>
+            	<td>0</td>
+                <td>No evidence for dosage pathogenicity</td>
+              </tr>
+              <tr>
+            	<td>Haploinsufficiency unlikely/Triplosensitivity unlikely (40)</td>
+                <td>Evidence suggests the gene is not dosage sensitive</td>
+              </tr>   
+            </tbody>
+          </table>
+          <p class="note">* Again, the loss of function score should be used to evaluate deletions, and the triplosensitivity score should be used to evaluated duplications. CNVs encompassing more than one gene must be evaluated in their totality (e.g. overall size, gain vs. loss, presence of other genes, etc). The rating of a single gene within the CNV should not necessarily be the only criteria by which one defines a clinical interpretation. Individual interpretations must take into account the phenotype described for the patient as well as issues of penetrance and expressivity of the disorder. ACMG has published guidelines for the characterization of postnatal CNVs, and these recommendations should be utilized (Genet Med (2011)13: 680-685). Exceptions to these interpretive correlations will occur, and clinical judgment should always be exercised.</p>
+         <h3>Development of Future Microarray Designs</h3>
+         <p>The results of the ongoing evidence-based dosage-sensitivity evaluation can be used to direct future microarray designs.  If the loss of function rating is different from the duplication rating, the coverage decisions may be based on the higher of the two ratings. Genomic regions with loss of function or duplication ratings of 3 may be deemed appropriate for enriched probe coverage on CMA, dependent upon the associated phenotype.  Enriched probe coverage may refer to either exon-level targeting or increased probe density as appropriate.   Regions with a rating of 2 will be evaluated for enriched probe coverage on a case-by-case basis.  In general, regions with ratings of 1 or 0 will be considered inappropriate for enriched probe coverage; however, these regions will be reviewed on an annual basis, and coverage decisions for future array designs may be altered to reflect emerging evidence.</p>
+         <p>Factors other than the documented dosage sensitivity of genomic regions must be taken into consideration when making decisions regarding CMA design.  Technical considerations, and other factors related to whether or not particular genes/regions are appropriate for increased probe coverage on CMA, such as phenotype, age of onset, inheritance patterns, and mutational mechanism, all must be taken into account.</p>
+	</div>
+      </div>
+    </div> <!--end maincontent-->
+
+    <div class="col right_col last_col"> <!-- panel on the right-->
+      <div id="links" class="side_panel">
+        <div class="side_panel_head">
+           <h3> Links </h3>
+        </div>
+        <ul>
+          <li><a href="index.shtml">ClinGen Curation Home Page</a></li>
+          <li><a href="https://www.clinicalgenome.org">ClinGen Home Page</a></li>
+          <li><a href="faq.shtml">FAQ</a></li>
+          <li><a href="contact.shtml" title="Contact Us">Contact Us</a></li>
+          <li><a href="pathogenic_region.shtml" title="Pathogenic CNV regions">Pathogenic CNV regions</a></li>
+          <li><a href="acmg.shtml" title="Curation of the ACMG 59 Genes">Curation of the ACMG 59 Genes</a></li>
+          <li><a href="ftp://ftp.clinicalgenome.org" title="ClinGen FTP site">FTP</a></li>
+        </ul>
+      </div> 
+    </div> <!-- end panel on the right-->
+
+    <div>
+        <!--#include virtual="footnote.html"-->
+    </div>
+
+  </div> <!-- end ten_col div-->
+</div><!--end grid div-->
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="ncbiautocomplete" content="dictionary: 'ISCA_Gene'" />
+<meta name="ncbi_app" content="cligen_dosage" />
+<meta name="ncbi_pdid" content="home" />
+<title>ClinGen Genome Dosage Map</title>
+<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/core/jig/1.14.8/js/jig.min.js"></script>
+<link href="https://www.ncbi.nlm.nih.gov/projects/genome/NCBI_core/header.css" rel="stylesheet" type="text/css" />
+<link href="clingen.css" rel="stylesheet" type="text/css" />
+<link href="footnote.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="grid">
+  <div class="col ten_col">
+    <div class="col left_col">
+        <span id="clingen_small_header">
+        <img id="clingen_small_logo" src="img2/clingen_logo.jpg" alt="Clingen Logo" />
+        ClinGen Dosage Sensitivity Curation Page
+        </span>
+        <div id="gene_header">
+          <h3>Curation of the ACMG 59 Genes</h3>
+        </div>
+    </div>
+
+    <div class="col right_col">
+      <div  class="side_panel">
+          <div class="side_panel_head">
+             <h3> Links </h3>
+          </div>
+          <ul>
+              <li><a href="index.shtml">ClinGen Curation Home Page</a></li>
+              <li><a href="https://www.clinicalgenome.org">ClinGen Home Page</a></li>
+              <li><a href="help.shtml">Help with this site</a></li>
+              <li><a href="faq.shtml">FAQ</a></li>
+              <li><a href="contact.shtml" title="Contact Us">Contact Us</a></li>
+              <li><a href="pathogenic_region.shtml" title="Pathogenic CNV regions">Pathogenic CNV regions</a></li>
+              <li><a href="ftp://ftp.clinicalgenome.org" title="ClinGen FTP site">FTP</a></li>
+          </ul>
+      </div>
+    </div>
+  </div> <!-- end  ten_col -->
+  <div class = "col ten_col">
+    <div id="stats" class="subsection">
+        <table id="acmg" data-jig="ncbigrid"  data-jigconfig="height:'60em',isScrollable: true">
+          <thead>
+          <tr>
+            <th>OMIM - disorder</th>
+            <th>GeneReviews</th>
+            <th>Typical age of onset</th>
+            <th>Gene</th>
+            <th>OMIM - gene</th>
+            <th>Haploinsufficiency score</th>
+            <th>Triplosensitivity score</th>
+          </tr>
+          </thead>
+          <tbody>
+            <!--#include virtual="daily/acmg56_body.html"-->
+          </tbody>
+        </table>
+    </div>
+     <div>
+        <!--#include virtual="footnote.html"-->
+    </div>
+  </div>
+</div> <!-- end grid-->
+</body>
+</html>

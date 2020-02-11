@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issue>
+	<key>{{ key }}</key>
+	<type>{{ issue_type }}</type>
+	<sym>{{ sym }}</sym>
+	<status>{{ curate_status }}</status>
+	<geneLink>{{ gene_link }}</geneLink>
+	<cytoBand>{{ cytoband }}</cytoBand>
+	<gr>{{ gr }}</gr>
+	<omim>{{ gene_omim }}</omim>
+	<loc>{{ loc }}</loc>
+</issue>
+

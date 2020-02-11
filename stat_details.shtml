@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="ncbi_app" content="cligen_dosage" />
+<meta name="ncbi_pdid" content="locsearch" />
+<meta name="ncbigrid" content="isPagable: true, pageSize: 20, isSortable: true">
+<meta name="ncbi_sub_loc" content = "{{ sub_loc }}" />
+<meta name="ncbi_sub_chr" content = "{{ sub_chr }}" />
+<meta name="ncbi_sub_pos" content = "{{ sub_pos }}" />
+<title>ClinGen Genome Dosage Map</title>
+<!-- STYLESHEETS --!>
+<link href="https://www.ncbi.nlm.nih.gov/projects/genome/NCBI_core/header.css" rel="stylesheet" type="text/css" />
+<link href="clingen.css" rel="stylesheet" type="text/css" />
+<link href="footnote.css" rel="stylesheet" type="text/css" />
+<!--Javascript-->
+<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/core/jig/1.14.8/js/jig.min.js"></script>
+<script type="text/javascript">
+  jQuery(function(){
+    jQuery(".stat_div").ncbitabs();
+  });
+</script>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery("#last_footnote").load("footnote.html", function() {
+            jQuery.ui.jig.scan(this, {
+                                      'widgets': ['ncbihelpwindow'] 
+            });      
+           
+            var dt = new Date();
+            var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
+                             "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
+                             "-04:00";
+  
+            var link_str = "/sites/ehelp?&Ncbi_App=" +
+                             jQuery('meta[name=ncbi_app]').attr('content') +
+                             "&Page=" +
+                             jQuery('meta[name=ncbi_pdid]').attr('content') +
+                             "&Time=" + time_str +
+                             "&Data=+PageURL:+" +
+                             window.location.href +  
+                             ";";  
+            jQuery('#help-desk-link').attr('href',link_str);
+        });
+   jQuery("#gene_complete_issues > div > div.ui-ncbigrid-filter-toolbar").attr("placeholder","Enter text to narrow down the list");
+   //jQuery(".stat_tab > div > div.ui-ncbigrid-filter-toolbar").css("right","auto");
+   //jQuery(".stat_tab > div > div.ui-ncbigrid-filter-toolbar").css("font-size","1em");
+   jQuery(".stat_tab > div > div.ui-ncbigrid-filter-toolbar > input").attr("placeholder","Enter text to narrow down the list");
+   jQuery(".stat_tab > div > div.ui-ncbigrid-filter-toolbar > label").text("");
+   jQuery("#gene_complete_issues > div:nth-child(1) > div:nth-child(1) > label:nth-child(1)").text("");
+
+   jQuery(".stat_tab").each(function(index) {
+       var aa= jQuery("tbody tr", this).length;
+       var tid = jQuery(this).attr('id');
+       var ele = jQuery('a[href="#' + tid + '"]');
+       var ele_text = ele.text();
+       ele.text(ele_text + " (" + aa +")");
+   });
+});
+</script>
+</head>
+
+<body>
+<div class="grid">
+  <div class="col ten_col">
+    <div class="col left_col">
+      <span id="clingen_small_header">
+        <img id="clingen_small_logo" src="img2/clingen_logo.jpg" alt="Clingen Logo" />
+        ClinGen Dosage Sensitivity Curation Page
+      </span>
+      <div id="gene_header">
+        <h1>Gene/Region Curation Stats Details</h1>
+      </div>
+    </div>
+    <div class="col right_col"> 
+      <div  class="side_panel">
+        <div class="side_panel_head">
+          <h3> Links </h3>
+        </div>
+        <ul>
+            <li><a href="index.shtml">ClinGen Curation Home Page</a></li>
+            <li><a href="https://www.clinicalgenome.org">ClinGen Home Page</a></li>
+            <li><a href="help.shtml">Help with this site</a></li>
+            <li><a href="faq.shtml">FAQ</a></li>
+            <li><a href="contact.shtml" title="Contact Us">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col ten_col">
+    <div class="subsection">
+    <ul id="stat_toc">
+       	  <li><a href="#complete_tabs">Review Complete</a></li>
+          <li><a href="#primary_tabs">Under Primary Review</a></li>
+          <li><a href="#secondary_tabs">Under Secondary Review</a></li>
+          <li><a href="#group_tabs">Under Group Review</a></li>
+    </ul>
+
+    <div id="complete_tabs" class="stat_div">
+      <h3> Review Complete </h3>
+      <ul>
+        <li><a href="#gene_complete_issues">Gene Issues</a></li>
+        <li><a href="#region_complete_issues">Region Issues</a></li>
+      </ul>
+      <div id="gene_complete_issues" class="stat_tab">
+        <table data-jig="ncbigrid" data-jigconfig="isSortable: true,  filterToolbarEnabled: true, filterToolbarIsCaseInsensitive: true, isPageable: true, pageSize: 10">
+          <thead>
+            <tr>
+              <th>Gene Symbol</th>
+              <th>ISCA ID</th>
+            </tr>
+          </thead>
+          <tbody>
+             <!--#include virtual="daily/stat/stat_gene_complete.html"--> 
+          </tbody>
+        </table>
+      </div><!--end gene_issues-->
+      <div id="region_complete_issues" class="stat_tab">
+        <table data-jig="ncbigrid" data-jigconfig="isSortable: true,  filterToolbarEnabled: true, filterToolbarIsCaseInsensitive: true, isPageable: true, pageSize: 10">
+          <thead>
+            <tr>
+              <th>Region Name</th>
+              <th>ISCA ID</th>
+            </tr>
+          </thead>
+          <tbody>
+              <!--#include virtual="daily/stat/stat_region_complete.html"-->
+          </tbody>
+        </table>
+      </div><!--end region_issues-->  
+    </div><!--end complete_tabs-->
+
+    <div id="primary_tabs" class="stat_div">
+      <h3>Under Primary Review</h3>
+      <ul>
+        <li><a href="#gene_primary_issues">Gene Issues</a></li>
+        <li><a href="#region_primary_issues">Region Issues</a></li>
+      </ul>
+      <div id="gene_primary_issues" class="stat_tab">
+        <table data-jig="ncbigrid" data-jigconfig="isSortable: true,  filterToolbarEnabled: true, filterToolbarIsCaseInsensitive: true, isPageable: true, pageSize: 10">
+          <thead>
+            <tr>
+              <th>Gene Symbol</th>
+              <th>ISCA ID</th>
+            </tr>
+          </thead>
+          <tbody>
+              <!--#include virtual="daily/stat/stat_gene_primary.html"-->
+          </tbody>
+        </table>
+      </div><!--end gene_issues-->
+      <div id="region_primary_issues" class="stat_tab">
+        <table data-jig="ncbigrid" data-jigconfig="isSortable: true,  filterToolbarEnabled: true, filterToolbarIsCaseInsensitive: true, isPageable: true, pageSize: 10">
+          <thead>
+            <tr>
+              <th>Region Name</th>
+              <th>ISCA ID</th>
+            </tr>
+          </thead>
+          <tbody>
+              <!--#include virtual="daily/stat/stat_region_primary.html"-->
+          </tbody>
+        </table>
+      </div><!--end region_issues-->
+    </div><!--end primary_tabs-->
+    
+    <div id="secondary_tabs" class="stat_div">
+      <h3>Under Secondary Review</h3>
+      <ul>
+        <li><a href="#gene_secondary_issues">Gene Issues</a></li>
+        <li><a href="#region_secondary_issues">Region Issues</a></li>
+      </ul>
+      <div id="gene_secondary_issues" class="stat_tab">
+        <table data-jig="ncbigrid" data-jigconfig="isSortable: true,  filterToolbarEnabled: true, filterToolbarIsCaseInsensitive: true, isPageable: true, pageSize: 10">
+          <thead>
+            <tr>
+              <th>Gene Symbol</th>
+              <th>ISCA ID</th>
+            </tr>
+          </thead>
+          <tbody>
+              <!--#include virtual="daily/stat/stat_gene_secondary.html"-->
+          </tbody>
+        </table>
+      </div><!--end gene_issues-->
+      <div id="region_secondary_issues" class="stat_tab">
+        <table data-jig="ncbigrid" data-jigconfig="isSortable: true,  filterToolbarEnabled: true, filterToolbarIsCaseInsensitive: true, isPageable: true, pageSize: 10">
+          <thead>
+            <tr>
+              <th>Region Name</th>
+              <th>ISCA ID</th>
+            </tr>
+          </thead>
+          <tbody>
+              <!--#include virtual="daily/stat/stat_region_secondary.html"-->
+          </tbody>
+        </table>
+      </div><!--end region_issues-->
+    </div><!--end secondary_tabs-->
+  
+    <div id="group_tabs" class="stat_div">
+      <h3>Under Group Review</h3>
+      <ul>
+        <li><a href="#gene_group_issues">Gene Issues</a></li>
+        <li><a href="#region_group_issues">Region Issues</a></li>
+      </ul>
+      <div id="gene_group_issues" class="stat_tab">
+        <table data-jig="ncbigrid" data-jigconfig="isSortable: true, filterToolbarEnabled: true, filterToolbarIsCaseInsensitive: true, isPageable: true, pageSize: 10">
+          <thead>
+            <tr>
+              <th>Gene Symbol</th>
+              <th>ISCA ID</th>
+            </tr>
+          </thead>
+          <tbody>
+              <!--#include virtual="daily/stat/stat_gene_group.html"-->
+          </tbody>
+        </table>
+      </div><!--end gene_issues-->
+      <div id="region_group_issues" class="stat_tab">
+        <table data-jig="ncbigrid" data-jigconfig="isSortable: true, filterToolbarEnabled: true, filterToolbarIsCaseInsensitive: true, isPageable: true, pageSize: 10">
+          <thead>
+            <tr>
+              <th>Region Name2</th>
+              <th>ISCA ID</th>
+            </tr>
+          </thead>
+          <tbody>
+              <!--#include virtual="daily/stat/stat_region_group.html"-->
+          </tbody>
+        </table>
+      </div><!--end region_issues-->
+    </div><!--end group_tabs-->
+   
+    <div id="last_footnote">
+    </div>
+
+  </div><!--end ten_col-->
+</div><!--end grid-->
+</body>
+</html>

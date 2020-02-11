@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="ncbi_app" content="cligen_dosage" />
+<meta name="ncbi_pdid" content="faq" />
+<title>ClinGen Genome Dosage Map: FAQ</title>
+<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/core/jig/1.14.8/js/jig.min.js"></script>
+<link href="https://www.ncbi.nlm.nih.gov/projects/genome/NCBI_core/header.css" rel="stylesheet" type="text/css" />
+<link href="clingen.css" rel="stylesheet" type="text/css" />
+<link href="footnote.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+          var dt = new Date();
+          var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
+                         "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
+                         "-04:00";
+  
+          var link_str = "/sites/ehelp?&Ncbi_App=" +
+                         jQuery('meta[name=ncbi_app]').attr('content') +
+                         "&Page=" +
+                         jQuery('meta[name=ncbi_pdid]').attr('content') +
+                         "&Time=" + time_str +
+                         "&Data=+PageURL:+" +
+                         window.location.href +  
+                         ";";  
+          jQuery('#help-desk-link').attr('href',link_str);
+  });
+</script>
+</head>
+<body>
+<div class="grid">
+  <div class="col ten_col">
+    <div class="prg_header">
+      <div class = "header_img" >
+        <img id="img_logo" src="img2/clingen_logo.jpg" alt="ClinGen Logo" />
+      </div>
+      <div class="header_text">
+        <h1>ClinGen Dosage Sensitivity Map</h1>
+        <p class="description"> The Clinical Genome Resource (ClinGen) consortium is curating genes and 
+                             regions of the genome to assess whether there is evidence to support that 
+                             these genes/regions are dosage sensitive and should be targeted 
+                             on a cytogenomic array.</p>
+        <p class="description"> All data are shown in GRCh37 and GRCh38 coordinates.</p>
+      </div>
+    </div>
+    <div id="maincontent" class="col left_col">
+      <div id="FAQ" class="subsection">
+        <h2>Frequently Asked Questions</h2>
+        <p>Coming soon...</p>
+      </div>
+    </div>
+  
+    <div class="col right_col last_col"> <!-- panel on the right-->
+      <div id="links" class="side_panel">
+        <div class="side_panel_head">
+           <h3> Links </h3>
+        </div>
+        <ul>
+          <li><a href="index.shtml">ClinGen Curation Home Page</a></li>
+          <li><a href="https://www.clinicalgenome.org">ClinGen Home Page</a></li>
+          <li><a href="help.shtml">Help with this site</a></li>
+          <li><a href="contact.shtml" title="Contact Us">Contact Us</a></li> 
+          <li><a href="pathogenic_region.shtml" title="Pathogenic CNV regions">Pathogenic CNV regions</a></li>
+          <li><a href="acmg.shtml" title="Curation of the ACMG 59 Genes">Curation of the ACMG 59 Genes</a></li>
+          <li><a href="ftp://ftp.clinicalgenome.org" title="ClinGen FTP site">FTP</a></li>
+        </ul>
+      </div>
+    </div> <!-- end panel on the right-->
+
+    <div>
+        <!--#include virtual="footnote.html"-->
+    </div>
+  </div> <!-- end ten_col div-->
+</div><!--end grid div-->
+</body>
+</html>

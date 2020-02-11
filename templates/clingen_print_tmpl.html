@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="ncbi_app" content="cligen_dosage" />
+<meta name="ncbi_pdid" content="{{ app_name }}" />
+
+<meta name="ncbi_isca_id" content="{{ key }}" />
+{% if iss_type == 'ISCA Gene Curation' %}
+<meta name="ncbi_sym" content="{{ sym }}" />
+{% endif %}
+<title>ClinGen Genome Dosage Map</title>
+<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/core/jig/1.14.8/js/jig.min.js"></script>
+</head>
+<body>
+	<h1>ClinGen Dosage Sensitivity Curation Page</h1>
+	{% if sym %}
+		<h2>{{ sym }}</h2>
+	{% else %}
+		<h2>{{ region_name }}</h2>
+	{% endif %}
+		<p id="cur_stat">Curation Status: {{ curate_status }}</p>
+	<div id="gene_info">
+		<h3>Gene Information</h3>
+		<ul>
+    	<li>id: {{ key }}</li>
+        {% if resolutiondate %}
+        <li>Date last evaluated: {{ resolutiondate }}</li>
+        {% else %}
+        <li>Last updated: {{ update }}</li>
+        {% endif %}
+			{% if iss_type == 'ISCA Gene Curation' %}
+      <li>Issue Type: ClinGen Gene Curation</li>
+      <li>Gene type: {{ type }}</li>
+			{% endif %}
+      <li>Entrez Gene: <a href="{{ gene_link }}" title="Go to Entrez Gene">{{ gene_link }}</a></li>
+         {% if gene_omim != '' %}
+           <li>OMIM: <a href="{{ gene_omim }}" title="Go to OMIM">{{ gene_omim }}</a></li>
+          {% endif %}
+         {% if gr != '' %}
+           <li>Gene Reviews: <a href="{{ gr }}" title="Go to Gene Reviews">{{ gr }}</a></li>
+         {% endif %}
+      </ul>
+	</div>
+	<div id="gene_loc">
+		<h3>Location Information</h3>
+		<ul>
+			<li>{{ cytoband }}</li>
+      <li><span id="asm_name">GRCh37/hg19</span> {{ loc }}</li>
+                {% if overlap %}
+                <li><span id="link_region">See linked regions:</span></li>
+                <ul>
+                {% for item in overlap %}
+                <li> <a href= "clingen_region.cgi?id={{ item.0 }}" title = "Go to Region"> {{ item.1 }}</a></li>
+                {% endfor %}
+                </ul> 
+                {% endif %}
+		</ul>
+	</div>
+	<div id="loss_ev">
+	<h3>Evidence for Loss Phenotypes</h3>
+	{% if curate_status == 'Complete' %}
+          <ul>          
+            <li>Loss of function score: {{ loss_score }}</li>
+            <li>Strength of Evidence: {{ loss_score_disp }}</li>
+            {% if loss_phen_dict|length > 0 %}
+              <li>Haploinsufficiency phenotype:
+              {% for loss_omim_id_key, loss_omim_desc in loss_phen_dict.items() %}
+                {% if not loop.first %},{% endif %}
+                <a href="https://omim.org/entry/{{ loss_omim_id_key }}" title="View in OMIM">{{ loss_omim_desc }}</a>
+              {% endfor %}
+              </li>
+            {% endif %}
+
+            {%if loss_ontology_id %}
+              {%if loss_phenotype_name %}
+                <li>Haploinsufficiency Phenotype: <a href="{{loss_ontology_base_url}}{{loss_ontology_id}}" target="_blank">{{ loss_phenotype_name }}</a></li>
+              {% else %}
+                <li>Haploinsufficiency Phenotype: <a href="{{loss_ontology_base_url}}{{loss_ontology_id}}" target="_blank">{{ loss_ontology_type_name }}: {{ loss_ontology_id_prefix}} {{ loss_ontology_id }}</a></li>
+              {% endif %}
+            {% endif %}
+          </ul>
+          {% if l_pm1_com  %}
+          <table data-jig="ncbigrid" id="loss_ev" summary="Evidence for loss of function phenotype">
+            <caption>Evidence for loss of function phenotype</caption>
+            <thead>
+              <tr>
+                <th scope="col">PubMed ID</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="/pubmed/{{ l_pm1 }}">{{ l_pm1 }}</a></td>
+                <td>{{ l_pm1_com }}</td>
+              </tr>
+              <tr>
+                <td><a href="/pubmed/{{ l_pm2 }}">{{ l_pm2 }}</a></td>
+                <td>{{ l_pm2_com }}</td>
+              </tr>
+              <tr>
+                <td><a href="/pubmed/{{ l_pm3 }}">{{ l_pm3 }}</a></td>
+                <td>{{ l_pm3_com }}</td>
+            </tbody>
+          </table>
+          {% endif %}
+
+          <ul> 
+            {% if loss_pheno_com %}
+              <li>Loss of function phenotype comments: {{ loss_pheno_com }}</li>
+            {% endif %}
+          </ul>
+  
+          {% if chrom == 'X' %}
+            <p>The loss-of-function and triplosensitivity ratings for genes on the X chromosome are made in the context of a male genome to account for the effects of hemizygous duplications or nullizygous deletions.  In contrast, disruption of some genes on the X chromosome causes male lethality and the ratings of dosage sensitivity instead take into account the phenotype in female individuals. Factors that may affect the severity of phenotypes associated with X-linked disorders include the presence of variable copies of the X chromosome (i.e. 47,XXY or 45,X) and skewed X-inactivation in females.</p>
+          {% endif %}
+          {% if chrom == 'Y' %}
+            <p>The ratings for loss-of-function and triplosensitivity for genes on the Y chromosome are made in the same fashion a
+s for genes linked to autosomal dominant disorders.</p>
+          {% endif %}
+        {% else %}
+          <p>Review not yet complete.</p>
+        {% endif %}
+	</div>
+	<div id="gain_ev">
+	<h3>Evidence for Triplosenstive Phenotype</h3>
+        {% if curate_status == 'Complete' %}
+          <ul>
+            <li>Triplosensitivity score: {{ gain_score }}</li>
+            <li>Strength of Evidence: {{ gain_score_disp }}</li>
+            {% if gain_phen_dict|length > 0%}
+               <li>Triplosensitivity phenotype:
+               {% for gain_omim_id_key, gain_omim_desc in gain_phen_dict.items() %}
+                 {% if not loop.first %},{% endif %}
+                 <a href="https://omim.org/entry/{{ gain_omim_id_key }}" title="View in OMIM">{{ gain_omim_desc }}</a>
+               {% endfor %}
+               </li>
+            {% endif %}
+
+            {%if gain_ontology_id %}
+              {%if gain_phenotype_name %}
+                <li>Triplosensitivity Phenotype: <a href="{{gain_ontology_base_url}}{{gain_ontology_id}}" target="_blank">{{ gain_phenotype_name }}</a></li>
+              {% else %}
+                <li>Triplosensitivity Phenotype: <a href="{{gain_ontology_base_url}}{{gain_ontology_id}}" target="_blank">{{ gain_ontology_type_name }}: {{ gain_ontology_id_prefix}} {{ gain_ontology_id }}</a></li>
+                {% endif %}
+            {% endif %}
+          </ul>
+          {% if g_pm1_com %}
+          <table data-jig="ncbigrid" id="gain_ev" summary="Evidence for triplosensitivity phenotype">
+            <caption>Evidence for gain of function phenotype</caption>
+            <thead>
+              <tr>
+                <th scope="col">PubMed ID</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="/pubmed/{{ g_pm1 }}">{{ g_pm1 }}</a></td>
+                <td>{{ g_pm1_com }}</td>
+              </tr>
+              <tr>
+                <td><a href="/pubmed/{{ g_pm2 }}">{{ g_pm2 }}</a></td>
+                <td>{{ g_pm2_com }}</td>
+              </tr>
+              <tr>
+                <td><a href="/pubmed/{{ p_pm3 }}">{{ g_pm3 }}</a></td>
+                <td>{{ g_pm3_com }}</td>
+              </tr>
+            </tbody>
+          </table>
+          {% endif %}
+
+          <ul>
+            {% if gain_pheno_com %}
+              <li>Triplosensitivity phenotype comment: {{ gain_pheno_com }}</li>
+            {% endif %}
+          </ul>
+
+          {% if chrom == 'X' %}
+            <p>The loss-of-function and triplosensitivity ratings for genes on the X chromosome are made in the context of a male genome to account for the effects of hemizygous duplications or nullizygous deletions.  In contrast, disruption of some genes on the X chromosome causes male lethality and the ratings of dosage sensitivity instead take into account the phenotype in female individuals. Factors that may affect the severity of phenotypes associated with X-linked disorders include the presence of variable copies of the X chromosome (i.e. 47,XXY or 45,X) and skewed X-inactivation in females.</p>
+          {% endif %}
+          {% if chrom == 'Y' %}
+            <p>The ratings for loss-of-function and triplosensitivity for genes on the Y chromosome are made in the same fashion a
+s for genes linked to autosomal dominant disorders.</p>
+          {% endif %}
+        {% else %}
+          <p>Review not yet complete.</p>
+        {% endif %}
+	</div>
+	<!--<div id="targ_dec">
+		<h3>ISCA Targeting Decision</h3>
+		{% if curate_status == 'Complete' %}
+        <ul>
+        <li>Recommendation: {{ targ_dec }}</li>
+        {% if reason %}
+          <li>Based on: {{ reason }}</li>
+        {% endif %}
+        {% if rec_comments %}
+          <li>Recommendation comments: {{ rec_comments }}</li>
+        {% endif %}
+        </ul>
+        {% else %}
+          <p>Review not yet complete.</p>
+        {% endif %}
+	</div>-->
+	<div id="disclaimer"><a name="disclamer"></a>
+  <p><span class="strong">NOTE:</span>The loss of function score should be used to evaluate deletions, and the triplosensitivity score should be used to evaluated duplications.  CNVs encompassing more than one gene must be evaluated in their totality (e.g. overall size, gain vs. loss, presence of other genes, etc).  The rating of a single gene within the CNV should not necessarily be the only criteria by which one defines a clinical interpretation.  Individual interpretations must take into account the phenotype described for the patient as well as issues of penetrance and expressivity of the disorder. ACMG has published guidelines for the characterization of postnatal CNVs, and these recommendations should be utilized (<a href="/pubmed/21681106" target="_blank">Genet Med (2011)13: 680-685</a>). Exceptions to these interpretive correlations will occur, and clinical judgment should always be exercised.</p>
+  </div><!--end disclaimer-->
+</body>
+</html>

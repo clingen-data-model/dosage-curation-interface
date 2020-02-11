@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="ncbi_app" content="cligen_dosage" />
+<meta name="ncbi_pdid" content="contact" />
+<title>ClinGen Genome Dosage Map: Contact Us</title>
+<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/core/jig/1.14.8/js/jig.min.js"></script>
+<link href="https://www.ncbi.nlm.nih.gov/projects/genome/NCBI_core/header.css" rel="stylesheet" type="text/css" />
+<link href="clingen.css" rel="stylesheet" type="text/css" />
+<link href="footnote.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+        jQuery(document).ready(function(){
+  
+          var dt = new Date();
+          var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
+                         "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
+                         "-04:00";
+  
+          var link_str = "/sites/ehelp?&Ncbi_App=" +
+                         jQuery('meta[name=ncbi_app]').attr('content') +
+                         "&Page=" +
+                         jQuery('meta[name=ncbi_pdid]').attr('content') +
+                         "&Time=" + time_str +
+                         "&Data=+PageURL:+" +
+                         window.location.href +  
+                         ";";  
+          jQuery('#help-desk-link').attr('href',link_str);
+        });
+
+	function validateForm(){
+		var message = jQuery("#message").val();
+		var email = jQuery("#email").val();
+                var gene  = jQuery("#gene").val();
+                var loc   = jQuery("#loc").val();
+
+		var error = '';
+
+                if ( ( typeof gene === 'undefined' ||  gene.trim() === '') 
+                     && ( typeof loc === 'undefined' ||  loc.trim() === '') )
+                {
+                    error = error + " Please provide either Gene symbol or Genome location.\n";
+                }
+               
+                if ( typeof email === 'undefined' ||  email.trim() === '') {
+                    error = error + " Email is required. Please provide a valid email.\n";
+                }
+                 
+                email = email.trim();
+		if(email.length){
+			v_mail = emailValidate(email);
+			if( ! v_mail ){
+				error = " Please provide a valid email.\n";
+			}
+		}
+		if(message.length < 20){
+			error = error + " Please provide a detailed message.\n";
+		}
+		if(error.length >0){
+			alert(error);
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+
+        function emailValidate(elem){
+            var reg =/^([A-Za-z0-9_\-\.])+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+            if( ! reg.test(elem)){
+                return false;
+            }
+            return true;
+        }
+</script>
+</head>
+<body>
+<div class="grid">
+  <div class="col ten_col">
+    <div class="prj_header">
+      <div class = "header_img" >
+        <img id="img_logo" src="img2/clingen_logo.jpg" alt="ClinGen Logo" />
+      </div>
+      <div class="header_text">
+        <h1>ClinGen Dosage Sensitivity Map</h1>
+        <p class="description"> The Clinical Genome Resource (ClinGen) consortium is curating genes 
+                             and regions of the genome to assess whether there is evidence to support 
+                             that these genes/regions are dosage sensitive and 
+                             should be targeted on a cytogenomic array.</p>
+        <p class="description"> All data are shown in GRCh37 and GRCh38 coordinates.</p>
+      </div>
+    </div>
+
+    <div id="maincontent" class="col left_col">
+      <div class="subsection">  
+        <h2>Contact ClinGen About Gene/Region Curation Issues</h2>
+        <form id="contact" class="isca_form" onsubmit="return validateForm()"; action="UserMail.cgi" method="post">
+        <fieldset>
+          <legend>Information</legend>
+          <p id="subject">
+            <label for="subject">Subject:</label>
+            <input type="text" name="subject" />Filling out this input will lead to submission failure.
+          </p>
+          <span id="hook">
+            <label for="gene">Gene symbol:</label>
+            <input type="text" name="gene" id="gene" />
+            OR
+            <label for="loc">Genome Location:</label>
+            <input type="text" name="loc" id="loc" />
+          </span>
+          <br />
+          <br />
+          <p>
+            <label for="message">Enter you question/request here:</label>
+            <textarea name="message" cols="100" rows="10" id="message"></textarea>
+          </p>
+          <br />
+          <br />
+          <p>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" />
+            <span class="em">You are required to provide your email, and we need it in order to get back in touch with you.</span>
+          </p>
+        </fieldset>
+        <p><input class="submit_button" type="submit" value="submit issue" /></p>
+        </form>
+      </div>
+    </div> <!--end maincontent-->
+
+    <div class="col right_col last_col"> <!-- panel on the right-->
+      <div id="links" class="side_panel">
+        <div class="side_panel_head">
+           <h3> Links </h3>
+        </div>
+        <ul>
+            <li><a href="index.shtml">ClinGen Curation Home Page</a></li>
+            <li><a href="https://www.clinicalgenome.org">ClinGen Home Page</a></li>
+            <li><a href="help.shtml">Help with this site</a></li>
+            <li><a href="faq.shtml">FAQ</a></li>
+            <li><a href="pathogenic_region.shtml" title="Pathogenic CNV regions">Pathogenic CNV regions</a></li>
+            <li><a href="acmg.shtml" title="Curation of the ACMG 59 Genes">Curation of the ACMG 59 Genes</a></li>
+            <li><a href="ftp://ftp.clinicalgenome.org" title="ClinGen FTP site">FTP</a></li>
+        </ul>
+      </div>
+    </div> <!-- end panel on the right-->
+
+    <div>
+        <!--#include virtual="footnote.html"-->
+    </div>
+
+  </div> <!-- end ten_col div-->
+</div><!--end grid div-->
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="ncbiautocomplete" content="dictionary: 'ISCA_Gene'" />
+<meta name="ncbi_app" content="cligen_dosage" />
+<meta name="ncbi_pdid" content="update_gene" />
+<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/core/jig/1.14.8/js/jig.min.js"></script>
+<title>ClinGen Genome Dosage Map: Provide Gene Curation Information</title>
+<link href="https://www.ncbi.nlm.nih.gov/projects/genome/NCBI_core/header.css" rel="stylesheet" type="text/css" />
+<link href="clingen.css" rel="stylesheet" type="text/css" />
+<link href="footnote.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+jQuery(document).ready(function(){
+//get url parameter
+var sym = getUrlVars();
+jQuery("#gene_sym").append(sym);
+getGeneInfo(sym);
+
+        var dt = new Date();
+        var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
+                         "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
+                         "-04:00";
+  
+        var link_str = "/sites/ehelp?&Ncbi_App=" +
+                         jQuery('meta[name=ncbi_app]').attr('content') +
+                         "&Page=" +
+                         jQuery('meta[name=ncbi_pdid]').attr('content') +
+                         "&Time=" + time_str +
+                         "&Data=+PageURL:+" +
+                         window.location.href +  
+                         ";";  
+        jQuery('#help-desk-link').attr('href',link_str);
+});
+//gets first tag/value after ? and ignores the rest
+function getUrlVars() {
+var i, len, sym, id;
+var search = window.location.search.substr(1);
+var param = search.split('=');
+return param[1];
+}
+
+function getGeneInfo(s){
+jQuery.ajax({
+url: 'clingen_gene.cgi?out=xml&sym='+s,
+contentType: 'text/xml',
+type: 'GET',
+dataType: 'xml',
+success: function(data){
+var key = jQuery(data).find('key').text();
+var cur_stat = jQuery(data).find('status').text();
+var type = jQuery(data).find('type').text();
+var loc = jQuery(data).find('loc').text()
+jQuery("#cur_stat").append(cur_stat);
+jQuery("#key").append(key);
+jQuery("#keyParam").val(key);
+jQuery("#issueType").append(type);
+jQuery("#loc").append(loc);
+
+},
+error: function(XMLHttpRequest, textStatus, errorThrown){
+alert(errorThrown);
+alert(textStatus);
+}
+});
+}
+
+function validateForm(){
+//need to add more validation later
+var email = jQuery('#email').val().replace(/^\s+|\s+$/gm,'');
+var name = jQuery('#userName').val().replace(/^\s+|\s+$/gm,'');
+        var pmid1 = jQuery('#pmid1').val().replace(/^\s+|\s+$/gm,'');
+var error;
+if(email.length){
+v_mail = emailValidate(email);
+if(v_mail == 'false'){
+error = "Please provide a valid email address.";
+}
+}
+if(email.length ==0){
+error = "Please provide an email address so we can contact you.";
+}
+if(name.length == 0){
+error = "Please provide a name so we can contact you.";
+}
+        if (pmid1.length == 0) {
+                error = "Please provide at least 1 pmid. ";
+        }
+        if (jQuery('input[name=dos_group1]:checked').length === 0 ) { 
+                error = "at least for PubMed ID 1, Please select the value for which this evidence is related.";
+        }  
+if(error.length >0){
+alert(error);
+return false;
+}
+else{
+return true;
+}
+}
+
+function emailValidate(elem){
+var reg =/^([A-Za-z0-9_\-\.])+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+  if(reg.test(elem) == false){
+  return false;
+  }
+  return true;
+}
+</script>
+</head>
+<body>
+<div class="grid">
+  <div class="col ten_col">
+    <div class="prj_header">
+      <div class = "header_img" >
+        <p><img id="img_logo" src="img2/clingen_logo.jpg" alt="ClinGen Logo" /></p>
+      </div>
+      <div class="header_text">
+         <h1>ClinGen Dosage Sensitivity Map</h1>
+         <p class="description"> The Clinical Genome Resource (ClinGen) consortium is
+                              curating genes and regions of the genome to assess whether there is evidence
+                              to support that these genes/regions are dosage sensitive and
+                              should be targeted on a cytogenomic array.</p>
+         <p class="description"> All data are shown in GRCh37 and GRCh38 coordinates.</p>
+      </div>
+    </div> <!-- end prj_header div-->
+
+    <div id="main_content" class="col left_col">
+      <div id="update_gene" class="subsection">
+        <h2>Provide Curation Information for a Gene</h2>
+        <h2 id="gene_sym"> </h2>
+        <div id="info">
+          <ul>
+            <li id="cur_stat"> </li>
+            <li id="key"> </li>
+            <li id="update"> </li>
+            <li id="issueType"> </li>
+            <li id="loc"> GRCh37/hg19: </li>
+          </ul>
+        </div>
+        <!--<ol>
+            <li><a href="index.shtml">ClinGen Curation Home Page</a></li>
+            <li><a href="https://www.clinicalgenome.org">ClinGen Home Page</a></li>
+            <li><a href="help.shtml">Help with this site</a></li>
+            <li><a href="faq.shtml">FAQ</a></li>
+            <li><a href="contact.shtml" title="Contact Us">Contact Us</a></li>
+        </ol>-->
+        <div id="userInfo">
+          <h2>Enter Your Information</h2>
+          <form id="userInput" name="user_input" onsubmit="return validateForm()"; action="UpdateGeneIssue.cgi" method="get">
+            <input id="keyParam" type="hidden" name="key" />
+            <fieldset>
+              <legend>User Information</legend>
+              <ol>
+              <li>
+                <label for="email">User email: </label>
+                <input type="text" name="email" id="email" />
+                <span class="directions">We will need an email from you in order to contact you with any questions.</span>
+              </li>
+              <li>
+                <label for="userName">Name: </label>
+                <input type="text" name="userName" id="userName" />
+                <span class="directions">Enter you name as you would like it displayed for attribution.</span> 
+              </li>
+              <li>
+                <label for="userComment">Provide any general comments you would like to add:</label><br />
+                <input type="textarea" name="userComment" id="userComment" />
+              </li>
+              </ol>
+            </fieldset>
+
+            <fieldset>
+              <legend>Dosage Sensitivity Evidence: Paper 1</legend>
+              <ol>
+              <li>
+              Select the value for which this evidence is related:
+              <input type="radio" name="dos_group1" value="forHap1" /> For Haploinsufficiency
+              <input type="radio" name="dos_group1" value="agHap1" /> Against Haploinsufficiency
+              <input type="radio" name="dos_group1" value="forTrip1" /> For Triplosensitivity
+              <input type="radio" name="dos_group1" value="agTrip1" /> Against Triplosensitivity
+              </li>
+              <li>
+              <label for="pmid1">PubMed ID 1</label>
+              <input type="text" name="pmid1" id="pmid1" />
+              <span class="directions">Enter the PubMed ID (e.g. PMID:21844811) that provides evidence for or against dosage sensitivity.</span>
+              </li>
+              <li>
+              <label for="pmid1_desc">PubMed ID 1 Description</label><br />
+              <input type="textarea" name="pmid1_desc" id="pmid1_desc" /><br />
+              <span class="directions">Please provide a brief description of why this paper provides evidence.</span>
+              </ol>
+            </fieldset>
+
+            <fieldset>
+              <legend>Dosage Sensitivity Evidence: Paper 2</legend>
+              <ol>
+              <li>
+              Select the value for which this evidence is related:
+              <input type="radio" name="dos_group2" value="forHap2" /> For Haploinsufficiency
+              <input type="radio" name="dos_group2" value="agHap2" /> Against Haploinsufficiency
+              <input type="radio" name="dos_group2" value="forTrip2" /> For Triplosensitivity
+              <input type="radio" name="dos_group2" value="agTrip2" /> Against Triplosensitivity
+              </li>
+              <li>
+              <label for="pmid2">PubMed ID 2</label>
+              <input type="text" name="pmid2" id="pmid2" />
+              <span class="directions">Enter the PubMed ID (e.g. PMID:21844811) that provides evidence for or against dosage sensitivity.</span>
+              </li>
+              <li>
+              <label for="pmid2_desc">PubMed ID 2 Description</label><br />
+              <input type="textarea" name="pmid2_desc" id="pmid2_desc" /><br />
+              <span class="directions">Please provide a brief description of why this paper provides evidence.</span>
+              </ol>
+            </fieldset>
+
+            <fieldset>
+              <legend>Dosage Sensitivity Evidence: Paper 3</legend>
+              <ol>
+              <li>
+              Select the value for which this evidence is related:
+              <input type="radio" name="dos_group3" value="forHap3" /> For Haploinsufficiency
+              <input type="radio" name="dos_group3" value="agHap3" /> Against Haploinsufficiency
+              <input type="radio" name="dos_group3" value="forTrip3" /> For Triplosensitivity
+              <input type="radio" name="dos_group3" value="agTrip3" /> Against Triplosensitivity
+              </li>
+              <li>
+              <label for="pmid3">PubMed ID 3</label>
+              <input type="text" name="pmid3" id="pmid3" />
+              <span class="directions">Enter the PubMed ID (e.g. PMID:21844811) that provides evidence for or against dosage sensitivity.</span>
+              </li>
+              <li>
+              <label for="pmid3_desc">PubMed ID 3 Description</label><br />
+              <input type="textarea" name="pmid3_desc" id="pmid3_desc" /><br />
+              <span class="directions">Please provide a brief description of why this paper provides evidence.</span>
+              </ol>
+            </fieldset>
+            <input type="submit" value="submit" />
+          </form>
+        </div>
+      </div> <!--subsection-->
+    </div> <!-- main content-->
+
+
+    <div class="col right_col last_col"> <!-- panel on the right-->
+      <div id="links" class="side_panel">
+        <div class="side_panel_head">
+           <h3> Links </h3>
+        </div>
+        <ul>
+          <li><a href="index.shtml">ClinGen Curation Home Page</a></li>
+          <li><a href="https://www.clinicalgenome.org">ClinGen Home Page</a></li>
+          <li><a href="help.shtml">Help with this site</a></li>
+          <li><a href="faq.shtml">FAQ</a></li>
+          <li><a href="contact.shtml" title="Contact Us">Contact Us</a></li>
+          <li><a href="pathogenic_region.shtml" title="Pathogenic CNV regions">Pathogenic CNV regions</a></li>
+          <li><a href="acmg.shtml" title="Curation of the ACMG 59 Genes">Curation of the ACMG 59 Genes</a></li>
+          <li><a href="ftp://ftp.clinicalgenome.org/" title="ClinGen FTP Site">FTP</a></li>
+        </ul>
+      </div>
+    </div> <!-- end panel on the right-->
+
+    <div>
+        <!--#include virtual="footnote.html"-->
+    </div>
+  </div> <!-- end ten_col-->
+</div><!--end grid-->
+</body>
+</html>

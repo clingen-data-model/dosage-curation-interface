@@ -1,0 +1,46 @@
+A) Python virtualenv setup
+============
+ 	virtualenv -p python3.6 clingen_env
+ 	source clingen_env/bin/activate
+ 	pip install -r requirement.txt
+        pip install lib/isca_me/dist/isca_me_util-1.0.tar.gz # note it is a local package, and you may use svn/git in your system
+
+============
+B) Folder files:
+    1) static html:
+        acmg.shtml  contact.shtml faq.shtml help.shtml index.shtml
+        pathogenic_region.shtml stat_details.shtml UpdateGene.shtml
+        use old include virtual to use daily generated html from daily directory
+        also lots of repeating codes exist in each shtml, and avoid them when refacor to use web framework
+  
+    2) cgi code:
+        clingen_gene.cgi  clingen_region.cgi  region_search.cgi  UpdateGeneIssue.cgi  UserMail.cgi
+        use templates in template directory
+        I modify the shebang to use relative path of virtualenv clinge_env, and it is totally changable
+        in your system
+
+    3) directory:
+        daily : all stuff refreshed daily used by web pages
+        conf : config files used to get password to access jira and file to mapping jira field
+        lib : the lib code used by cgi and ftp process
+        templates : the templates files used by cgi via jinja to generate cgi result page
+        clingen_env : the generated virtual env, note: I use this relative path of this folder in cgi, but 
+                      it can be anyname , and the cgi should use default path to find virtualenv in your system
+        daily_process: contain all codes for daily_processing, including idx file and ftp file generation 
+===========
+C) Ftp and daily file generation
+    daily_cron.sh is a simple wrapper script to run all python codes for ftp file and index file generation
+    note, you can put files in any directory for your purpose, and I just put them in underlying daily_staging
+    or ftp_staging as an example
+    MakeFTPFiles.py for ftp file
+    IndexNames2IDs.py IndexRegions2IDs.py ProcessGeneDaily.py for index file
+    other python scripts are used to generate mostly html for index page or static page
+
+D) Changes are made to all codes to remove dependency of our local, internal path and files. 
+   I may miss some, and it may cause file/path not_found, file movement errors.
+
+E) I just rewrite all code from perl to python about 4-5 years ago without much logic/stucture change
+   so the codes are never like clean code we have in those days. I suggest for python processing code
+   with better library code as class/small_method/100% uniting coverage, for webpart, if python is used,
+   pick either django, flask or other frameworks
+   Definitely the css and javascript can follow pattern of other clingen site
