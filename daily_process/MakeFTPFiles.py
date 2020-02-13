@@ -358,7 +358,7 @@ if __name__ == "__main__":
         out_hash[assembly]['FH_REGION'].close()
 
         # sort BED FILES
-        print(("track name='ClinGen Gene Curation Haplosensitivity "
+        print(("track name='ClinGen Gene Curation Haploinsufficiency "
                "Scores' db={}").format(out_hash[assembly]['HG']), file=out_hash[assembly]['FH_HAP'])
         out_hash[assembly]['FH_HAP'].flush()
         subprocess.check_call(['sort', '-k 1,1', '-k 2,2', out_hash[assembly]['HAP_FILE'] + '.tmp'],
