@@ -13,17 +13,28 @@ echo "Making FTP files" >> $log_file;
 python3 MakeFTPFiles.py >> $log_file
 wait
 
-nprint "FTP file generation completed"
+nprint "FTP file generation completed"j
 
-mv ClinGen_triplosensitivity_gene_GRCh37.bed ftp_staging/
-mv ClinGen_haploinsufficiency_gene_GRCh37.bed ftp_staging/
-mv ClinGen_region_curation_list_GRCh37.tsv ftp_staging/
-mv ClinGen_gene_curation_list_GRCh37.tsv ftp_staging/
-mv ClinGen_triplosensitivity_gene_GRCh38.bed ftp_staging/
-mv ClinGen_haploinsufficiency_gene_GRCh38.bed ftp_staging/
-mv ClinGen_region_curation_list_GRCh38.tsv ftp_staging/
-mv ClinGen_gene_curation_list_GRCh38.tsv ftp_staging/
-rm *.tmp
+# filter out any not yet evaluated messaged
+grep -v "Not yet evaluated" ClinGen_triplosensitivity_gene_GRCh37.bed > ClinGen_triplosensitivity_gene_GRCh37.bed.tmp
+grep -v "Not yet evaluated" ClinGen_haploinsufficiency_gene_GRCh37.bed > ClinGen_haploinsufficiency_gene_GRCh37.bed.tmp
+grep -v "Not yet evaluated" ClinGen_region_curation_list_GRCh37.tsv > ClinGen_region_curation_list_GRCh37.tsv.tmp
+grep -v "Not yet evaluated" ClinGen_gene_curation_list_GRCh37.tsv > ClinGen_gene_curation_list_GRCh37.tsv.tmp
+grep -v "Not yet evaluated" ClinGen_triplosensitivity_gene_GRCh38.bed > ClinGen_triplosensitivity_gene_GRCh38.bed.tmp
+grep -v "Not yet evaluated" ClinGen_haploinsufficiency_gene_GRCh38.bed > ClinGen_haploinsufficiency_gene_GRCh38.bed.tmp
+grep -v "Not yet evaluated" ClinGen_region_curation_list_GRCh38.tsv > ClinGen_region_curation_list_GRCh38.tsv.tmp
+grep -v "Not yet evaluated" ClinGen_gene_curation_list_GRCh38.tsv > ClinGen_gene_curation_list_GRCh38.tsv.tmp
+
+mv ClinGen_triplosensitivity_gene_GRCh37.bed.tmp ftp_staging/ClinGen_triplosensitivity_gene_GRCh37.bed
+mv ClinGen_haploinsufficiency_gene_GRCh37.bed.tmp ftp_staging/ClinGen_haploinsufficiency_gene_GRCh37.bed
+mv ClinGen_region_curation_list_GRCh37.tsv.tmp ftp_staging/ClinGen_region_curation_list_GRCh37.tsv
+mv ClinGen_gene_curation_list_GRCh37.tsv.tmp ftp_staging/ClinGen_gene_curation_list_GRCh37.tsv
+mv ClinGen_triplosensitivity_gene_GRCh38.bed.tmp ftp_staging/ClinGen_triplosensitivity_gene_GRCh38.bed
+mv ClinGen_haploinsufficiency_gene_GRCh38.bed.tmp ftp_staging/ClinGen_haploinsufficiency_gene_GRCh38.bed
+mv ClinGen_region_curation_list_GRCh38.tsv.tmp ftp_staging/ClinGen_region_curation_list_GRCh38.tsv
+mv ClinGen_gene_curation_list_GRCh38.tsv.tmp ftp_staging/ClinGen_gene_curation_list_GRCh38.tsv
+rm *.tmp *.bed *.tsv
+
 
 echo "Running IndexRegions2IDs.py" >> $log_file;
 python3 IndexRegions2IDs.py  >> $log_file
