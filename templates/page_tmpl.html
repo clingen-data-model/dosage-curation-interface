@@ -241,6 +241,7 @@ jQuery(document).ready(function() {
 
             {% if iss_type == 'ISCA Gene Curation' %}
             <li>Gene type: {{ type }}</li>
+            <li>ClinGen: <a target="clingen" href="https://search.clinicalgenome.org/kb/home?utf8=✓&term={{ sym }}" title="Go to Clinical Genome Resource (ClinGen)">Search for information about {{ sym }} at clinicalgenome.org</a></li>
             <li>Entrez Gene: <a href="{{ gene_link }}" title="Go to Entrez Gene">{{ gene_link }}</a></li>
             {% endif %}
 
