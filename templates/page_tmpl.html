@@ -23,6 +23,9 @@
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
+  IDEO.base_path = "https://www.ncbi.nlm.nih.gov/projects/ideogram/";
+  IDEO.ncfetch_url = "https://www.ncbi.nlm.nih.gov/projects/sviewer/ncfetch.cgi";
+
 	jQuery("#loss_sc").click(function(){
 		jQuery("#tabs").ncbitabs("option", "active", 1);
 	});
