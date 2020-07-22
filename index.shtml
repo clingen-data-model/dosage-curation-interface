@@ -5,10 +5,10 @@
 <meta name="ncbiautocomplete" content="dictionary: 'ISCA_Gene'" />
 <meta name="ncbi_app" content="cligen_dosage" />
 <meta name="ncbi_pdid" content="home" />
-<meta name="galert_type" content="default"/> 
+<meta name="galert_type" content="default"/>
 <title>ClinGen Genome Dosage Map</title>
 <script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/core/jig/1.14.8/js/jig.min.js"></script>
-<script type="text/javascript"> 
+<script type="text/javascript">
     jQuery.getScript("https://www.ncbi.nlm.nih.gov/core/alerts/alerts.js", function () {
         galert(['div.nav_and_browser', 'div.header', '#universal_header', 'div#ncbiheader', 'body > *:nth-child(1)'])
     });
@@ -20,20 +20,20 @@
   jQuery(document).ready(function(){
 
   	jQuery('#loc_form').on('submit', processFormLoc);
-  
+
           var dt = new Date();
           var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
                          "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
                          "-04:00";
-  
+
           var link_str = "/sites/ehelp?&Ncbi_App=" +
                          jQuery('meta[name=ncbi_app]').attr('content') +
                          "&Page=" +
                          jQuery('meta[name=ncbi_pdid]').attr('content') +
                          "&Time=" + time_str +
                          "&Data=+PageURL:+" +
-                         window.location.href +  
-                         ";";  
+                         window.location.href +
+                         ";";
           jQuery('#help-desk-link').attr('href',link_str);
   });
 
@@ -79,23 +79,27 @@
 <body>
 <div class="grid">
   <div class="col ten_col">
-    <div class="prj_header">
+    <div class="prj_header" style="height: auto;">
       <div class = "header_img" >
         <img id="img_logo" src="img2/clingen_logo.jpg" alt="ClinGen Logo" />
       </div>
       <div class="header_text">
           <h1>ClinGen Dosage Sensitivity Map</h1>
-          <p class="description"> 
+          <p class="description">
                         The Clinical Genome Resource (ClinGen) consortium is
-                        curating genes and regions of the genome to assess whether 
-                        there is evidence  to support that these genes/regions 
-                        are dosage sensitive and should be targeted on a 
+                        curating genes and regions of the genome to assess whether
+                        there is evidence  to support that these genes/regions
+                        are dosage sensitive and should be targeted on a
                         cytogenomic array.</p>
-          <p class="description"> All data are shown in GRCh37 and GRCh38 coordinates.</p>
+          <p class="description">All data are shown in GRCh37 and GRCh38 coordinates.</p>
+          <p style="padding:10px; border:2px #000 solid; background:#dae6f5; font-size:97%;" class="description">
+            <a href="https://www.surveymonkey.com/r/YJJPSFQ" target="_none"
+              style="float:right; padding:10px; background:#1a58a4; color:#fff; font-size:105%; margin-left:15px">Provide Feedback
+            </a>ClinGen is seeking the genetics and broader medical community's valuable feedback on our work, tools, and resources, our 10 min survey is open to ClinGen contributors, users of ClinGen resources and those new to our work - we look forward to your input. </p>
       </div>
     </div>
     <div id="maincontent" class="col left_col">
-      <div class="subsection"> 
+      <div class="subsection">
         <div id="gene" class="data"> <!--gene_search-->
           <form id="gene_form" name="gene_form" action="clingen_gene.cgi" method="get">
           <fieldset>
@@ -104,9 +108,9 @@
             <li>
               <label for="sym">Symbol: </label>
               <input type="text" name="sym" data-jig="ncbiautocomplete" autocomplete="off" /><br />
-              Or click on the following examples: 
-              <a href="clingen_gene.cgi?sym=ZEB2">ZEB2</a>, 
-              <a href="clingen_gene.cgi?sym=PTEN">PTEN</a>, 
+              Or click on the following examples:
+              <a href="clingen_gene.cgi?sym=ZEB2">ZEB2</a>,
+              <a href="clingen_gene.cgi?sym=PTEN">PTEN</a>,
               <a href="clingen_gene.cgi?sym=MAPT">MAPT</a>
             </li>
             <li class="test">
@@ -114,7 +118,7 @@
               <input type="text" name="subject" id="subject" />
                     Filling out this entry will lead to submission failure.
             </li>
-            <li> 
+            <li>
               <input type="submit" value="Go" />
             </li>
             </ol>
@@ -130,7 +134,7 @@
               <li>
                   <label for="loc">Location: </label>
                   <input type="text" name="loc" action="region_search.cgi" id="loc"/>
-                  <p>example: <a href="region_search.cgi?loc=chr2:44000000-45000000">chr2:44,000,000-45,500,000</a>, 
+                  <p>example: <a href="region_search.cgi?loc=chr2:44000000-45000000">chr2:44,000,000-45,500,000</a>,
                       <a href="region_search.cgi?loc=chr2:41800001-55000000">2p21-2p16.2</a></p>
               </li>
               <li class="test">
@@ -150,7 +154,7 @@
       <div id="recent" class="subsection">
         <!--#include virtual="daily/recent_review.html"-->
       </div>
-   
+
       <div id="updates" class="subsection">
         <!--#include virtual="daily/ratingchange.html"-->
       </div>
@@ -176,7 +180,7 @@
       </div>
       <div>
         <!--#include virtual="sidepanel_contributor.html"-->
-      </div>    
+      </div>
     </div> <!-- end panel on the right-->
     <div>
         <!--#include virtual="footnote.html"-->

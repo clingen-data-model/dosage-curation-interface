@@ -35,24 +35,24 @@ jQuery(document).ready(function(){
 
         jQuery("#last_footnote").load("footnote.html", function() {
             jQuery.ui.jig.scan(this, {
-                                      'widgets': ['ncbihelpwindow'] 
-            });      
-           
+                                      'widgets': ['ncbihelpwindow']
+            });
+
             var dt = new Date();
             var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
                              "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
                              "-04:00";
-  
+
             var link_str = "/sites/ehelp?&Ncbi_App=" +
                              jQuery('meta[name=ncbi_app]').attr('content') +
                              "&Page=" +
                              jQuery('meta[name=ncbi_pdid]').attr('content') +
                              "&Time=" + time_str +
                              "&Data=+PageURL:+" +
-                             window.location.href +  
-                             ";";  
+                             window.location.href +
+                             ";";
             jQuery('#help-desk-link').attr('href',link_str);
-        }); 
+        });
 
         var appIndex=0;
         jQuery("#g_view_menu").on('change', function(eventObj) {
@@ -76,7 +76,7 @@ jQuery(document).ready(function(){
                 });
             }
         });
-            
+
 });
 </script>
 {% if chrom|length > 0 %}
@@ -92,7 +92,7 @@ jQuery(document).ready(function() {
 		data: [
 			{chrom: '{{ chrom }}', start: {{ chr_start }}, stop: {{ chr_stop }}},
 		],
-		width: 10 
+		width: 10
 	});
 	var bandLabelConfig = {
 		mode:IDEO.LabelOrientation.Lengthwise,
@@ -180,6 +180,7 @@ jQuery(document).ready(function() {
                 {% if iss_type == 'ISCA Gene Curation' %}
                         <li><a href="UpdateGene.shtml?sym={{ sym }}">Report information on a gene</a></li>
                 {% endif %}
+                <li><a href="https://www.surveymonkey.com/r/YJJPSFQ" target="_none" title="ClinGen FTP Site">Provide Feedback</a></li>
             </ul>
         </div>
       </div>
@@ -204,7 +205,7 @@ jQuery(document).ready(function() {
             </ul>
           </div>
       </div>
-     
+
       <div class="col right_col">
         <div  class="side_panel">
             <div class="side_panel_head">
@@ -222,6 +223,7 @@ jQuery(document).ready(function() {
                 {% if iss_type == 'ISCA Gene Curation' %}
                         <li><a href="UpdateGene.shtml?sym={{ sym }}">Report information on a gene</a></li>
                 {% endif %}
+                <li><a href="https://www.surveymonkey.com/r/YJJPSFQ" target="_none" title="ClinGen FTP Site">Provide Feedback</a></li>
             </ul>
         </div>
       </div>
@@ -277,7 +279,7 @@ jQuery(document).ready(function() {
             {%if pli %}
               <li><a href="http://exac.broadinstitute.org/faq" target="_blank">ExAC pLI score</a>: {{ pli }}</li>
             {% endif %}
-            
+
             {% if overlap %}
               <li><span id="link_region">See related regions:</span></li>
               {% for item in overlap %}
@@ -297,16 +299,16 @@ jQuery(document).ready(function() {
         <ul>
           <li>{{ cytoband }}</li>
           <li><span id="asm_name">GRCh37/hg19</span> {{ loc }}</li>
-          <li>View: <a href="https://www.ncbi.nlm.nih.gov/nuccore/{{ seqID }}?report=graph&from={{ chr_start }}&to={{ chr_stop }}" title="view in sequence viewer" target="_blank">NCBI</a> 
-          {%if chrom|length > 0 %} 
-          | <a href="https://www.ensembl.org/Homo_sapiens/Location/View?r={{ chrom }}:{{ chr_start }}-{{ chr_stop }}" title="view in Ensembl" target="_blank">Ensembl</a> 
+          <li>View: <a href="https://www.ncbi.nlm.nih.gov/nuccore/{{ seqID }}?report=graph&from={{ chr_start }}&to={{ chr_stop }}" title="view in sequence viewer" target="_blank">NCBI</a>
+          {%if chrom|length > 0 %}
+          | <a href="https://www.ensembl.org/Homo_sapiens/Location/View?r={{ chrom }}:{{ chr_start }}-{{ chr_stop }}" title="view in Ensembl" target="_blank">Ensembl</a>
           {% endif %}
           | <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?clade=mammal&org=Human&db=hg19&position={%if chrom|length > 0 %}chr{{ chrom }}{%else%}{{ seqID }}{% endif %}:{{ chr_start }}-{{ chr_stop }}&knownGene=pack" title="view at UCSC" target="_blank">UCSC</a></li>
           {%if GRCh38_loc %}
           <li><span id="asm_name">GRCh38/hg38</span> {{ GRCh38_loc }}</li>
-          <li>View: <a href="https://www.ncbi.nlm.nih.gov/nuccore/{{ GRCh38_seqID }}?report=graph&from={{ GRCh38_chr_start }}&to={{ GRCh38_chr_stop }}" title="view in sequence viewer" target="_blank">NCBI</a> 
+          <li>View: <a href="https://www.ncbi.nlm.nih.gov/nuccore/{{ GRCh38_seqID }}?report=graph&from={{ GRCh38_chr_start }}&to={{ GRCh38_chr_stop }}" title="view in sequence viewer" target="_blank">NCBI</a>
           {%if GRCh38_chrom|length > 0 %}
-          | <a href="https://www.ensembl.org/Homo_sapiens/Location/View?r={{ GRCh38_chrom }}:{{ GRCh38_chr_start }}-{{ GRCh38_chr_stop }}" title="view in Ensembl" target="_blank">Ensembl</a> 
+          | <a href="https://www.ensembl.org/Homo_sapiens/Location/View?r={{ GRCh38_chrom }}:{{ GRCh38_chr_start }}-{{ GRCh38_chr_stop }}" title="view in Ensembl" target="_blank">Ensembl</a>
           {% endif %}
           | <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?clade=mammal&org=Human&db=hg38&position={%if GRCh38_chrom|length > 0 %}chr{{ GRCh38_chrom }}{%else%}{{ GRCh38_seqID }}{% endif %}:{{ GRCh38_chr_start }}-{{ GRCh38_chr_stop }}&knownGene=pack" title="view at UCSC" target="_blank">UCSC</a></li>
           {% endif %}
@@ -315,7 +317,7 @@ jQuery(document).ready(function() {
   </div>
   <div class = "col ten_col">
     <div class="subsection">
-    <div id="tabs" class="col">  
+    <div id="tabs" class="col">
       {% if iss_type == 'ISCA Gene Curation' %}
       <p id="rep_link"><a href="clingen_gene.cgi?sym={{ sym }}&page=print" target="_blank">Print Full Report</a></p>
       {% else %}
@@ -342,7 +344,7 @@ jQuery(document).ready(function() {
         </div>
         <div id="sv1" class="SeqViewerApp">
           <a href='?embedded=true&appname=isca_public&assm_context=GCF_000001405.25&id={{ seqID }}&from={{ sv_start }}&to={{ sv_stop }}&tracks=[key:sequence_track][key:gene_model_track,name:NCBI,display_name:NCBI%20Genes,annots:Unnamed,Options:ShowAll][key:dbvar_track,name:dbVar_nstd45,display_name:ISCA%20Curated%20Regions,annots:NA000002000.2,rendering:Default]'></a>
-        </div> 
+        </div>
         {% else %}
         <p id="gen_head"><span class="strong">GRCh37/hg19</span> {{ loc }} (<a href="https://www.ncbi.nlm.nih.gov/nuccore/{{ seqID }}" target="_blank">{{ seqID }})</a></p>
         <div id="sv1" class="SeqViewerApp">
@@ -356,7 +358,7 @@ jQuery(document).ready(function() {
           <ul>
             <li>Haploinsufficiency score: {{ loss_score }}</li>
             <li>Strength of Evidence<a data-jig="ncbipopper" data-jigconfig="destSelector: '#disclaimer', isTriggerElementCloseClick: false"> (disclaimer)</a>: {{ loss_score_disp }}</li>
-            
+
             {% if loss_phen_dict|length > 0 %}
               <li>Haploinsufficiency Phenotype:
               {% for loss_omim_id_key, loss_omim_desc in loss_phen_dict.items() %}
@@ -405,7 +407,7 @@ jQuery(document).ready(function() {
           <h4>Haploinsufficiency phenotype comments:</h4>
           <p class="data_pre">{{ loss_pheno_com }}</p>
           {% endif %}
-                          
+
           {% if chrom == 'X' %}
           <p class="note">The loss-of-function and triplosensitivity ratings for genes on the X chromosome are made in the context of a male genome to account for the effects of hemizygous duplications or nullizygous deletions.  In contrast, disruption of some genes on the X chromosome causes male lethality and the ratings of dosage sensitivity instead take into account the phenotype in female individuals. Factors that may affect the severity of phenotypes associated with X-linked disorders include the presence of variable copies of the X chromosome (i.e. 47,XXY or 45,X) and skewed X-inactivation in females.</p>
           {% endif %}
@@ -413,7 +415,7 @@ jQuery(document).ready(function() {
           {% if chrom == 'Y' %}
           <p class="note">The ratings for loss-of-function and triplosensitivity for genes on the Y chromosome are made in the same fashion as for genes linked to autosomal dominant disorders.</p>
           {% endif %}
-        <!-- end complete -->  
+        <!-- end complete -->
         {% else %}
           <p>Review not yet complete.</p>
         {% endif %}
@@ -432,7 +434,7 @@ jQuery(document).ready(function() {
                  <a href="https://omim.org/entry/{{ gain_omim_id_key }}" title="View in OMIM">{{ gain_omim_desc }}</a>
                {% endfor %}
                </li>
-            {% endif %} 
+            {% endif %}
 
             {%if gain_ontology_id %}
               {%if gain_phenotype_name %}
@@ -441,7 +443,7 @@ jQuery(document).ready(function() {
                 <li>Triplosensitivity Phenotype: <a href="{{gain_ontology_base_url}}{{gain_ontology_id}}" target="_blank">{{ gain_ontology_type_name }}: {{ gain_ontology_id_prefix}} {{ gain_ontology_id }}</a></li>
                 {% endif %}
             {% endif %}
-          </ul> 
+          </ul>
 
           {% if g_pm1_com %}
           <table data-jig="ncbigrid" id="gain_ev" summary="Evidence for triplosensitivity phenotype">
@@ -487,8 +489,8 @@ jQuery(document).ready(function() {
         {% endif %}
       </div><!--end gain evidence-->
     </div><!--end tabs-->
-    </div>   
- 
+    </div>
+
     <div id="last_footnote">
     </div>
 

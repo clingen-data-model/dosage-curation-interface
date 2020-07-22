@@ -23,24 +23,24 @@
 jQuery(document).ready(function(){
     jQuery("#last_footnote").load("footnote.html", function() {
             jQuery.ui.jig.scan(this, {
-                                      'widgets': ['ncbihelpwindow'] 
-            });      
-           
+                                      'widgets': ['ncbihelpwindow']
+            });
+
             var dt = new Date();
             var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
                              "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
                              "-04:00";
-  
+
             var link_str = "/sites/ehelp?&Ncbi_App=" +
                              jQuery('meta[name=ncbi_app]').attr('content') +
                              "&Page=" +
                              jQuery('meta[name=ncbi_pdid]').attr('content') +
                              "&Time=" + time_str +
                              "&Data=+PageURL:+" +
-                             window.location.href +  
-                             ";";  
+                             window.location.href +
+                             ";";
             jQuery('#help-desk-link').attr('href',link_str);
-        }); 
+        });
 });
 </script>
 </head>
@@ -65,6 +65,7 @@ jQuery(document).ready(function(){
                <li><a href="help.shtml">Help with this site</a></li>
                <li><a href="faq.shtml">FAQ</a></li>
                <li><a href="contact.shtml" title="Contact Us">Report a gene or region</a></li>
+                <li><a href="https://www.surveymonkey.com/r/YJJPSFQ" target="_none" title="ClinGen FTP Site">Provide Feedback</a></li>
             </ul>
         </div>
       </div>
