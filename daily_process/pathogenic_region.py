@@ -24,14 +24,17 @@ CONFIG = os.path.join(DATA_DIR, '.isca_config')
 STD_FIELD_FILE = os.path.join(DATA_DIR, 'standard_field.ini')
 REGION_OUT_HTML = "pathogenic_region_body.html"
 
+
 if __name__ == "__main__":
 
     gene_symbol_hash = {}
     (user, passwd) = isca_me_util.ParseLoginConfig(CONFIG)
     jira = isca_me_util.JiraConnect(user, passwd)
     ISCA_dict = isca_me_util.GetFieldDict(STD_FIELD_FILE, 'ISCA')
-    query_str = ('project = ISCA AND issuetype in (\"ISCA Region Curation\") '
-                 'AND labels in (\"nstd45pathogenic\") ')
+    #query_str = ('project = ISCA AND issuetype in (\"ISCA Region Curation\") '
+    #             'AND labels in (\"nstd45pathogenic\") ')
+    #query_str = ('filter = 14035 AND project = ISCA AND labels = Recurrent ORDER BY cf[10202] ASC')
+    query_str = ('filter=14035')
     issue_list = isca_me_util.GetIssuesByJQL(jira, query_str, sys.stdout)
     designated_fields = [
                           'ISCA Region Name',

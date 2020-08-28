@@ -1,3 +1,8 @@
 test.cgi
 .isca_config
 distsave
+daily/
+daily_process/daily_staging/
+daily_process/ftp_staging/
+daily_process/log/
+*(copy).*

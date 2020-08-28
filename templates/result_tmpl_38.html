@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="ncbi_app" content="cligen_dosage" />
+<meta name="ncbi_pdid" content="locsearch" />
+<meta name="ncbigrid" content="isPagable: true, pageSize: 20, isSortable: true">
+<meta name="ncbi_sub_loc" content = "{{ sub_loc }}" />
+<meta name="ncbi_sub_chr" content = "{{ sub_chr }}" />
+<meta name="ncbi_sub_pos" content = "{{ sub_pos }}" />
+<title>ClinGen Genome Dosage Map</title>
+<!-- STYLESHEETS --!>
+<link href="https://www.ncbi.nlm.nih.gov/projects/genome/NCBI_core/header.css" rel="stylesheet" type="text/css" />
+<link href="clingen.css" rel="stylesheet" type="text/css" />
+<link href="footnote.css" rel="stylesheet" type="text/css" />
+<!--Javascript-->
+<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/core/jig/1.14.8/js/jig.min.js"></script>
+<script type="text/javascript">
+  jQuery(function(){
+    jQuery("#tabs").ncbitabs();
+  });
+</script>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery("#last_footnote").load("footnote.html", function() {
+            jQuery.ui.jig.scan(this, {
+                                      'widgets': ['ncbihelpwindow']
+            });
+
+            var dt = new Date();
+            var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
+                             "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
+                             "-04:00";
+
+            var link_str = "/sites/ehelp?&Ncbi_App=" +
+                             jQuery('meta[name=ncbi_app]').attr('content') +
+                             "&Page=" +
+                             jQuery('meta[name=ncbi_pdid]').attr('content') +
+                             "&Time=" + time_str +
+                             "&Data=+PageURL:+" +
+                             window.location.href +
+                             ";";
+            jQuery('#help-desk-link').attr('href',link_str);
+        });
+});
+</script>
+</head>
+
+<body>
+<div class="grid">
+  <div class="col ten_col">
+    <div class="col left_col">
+      <span id="clingen_small_header">
+        <img id="clingen_small_logo" src="img2/clingen_logo.jpg" alt="Clingen Logo" />
+        ClinGen Dosage Sensitivity Curation Page
+      </span>
+      <div id="gene_header">
+        <h1>Location Search Results</h1>
+        <ul>
+          <li id="cur_stat">Submitted location: {{ sub_loc }}</li>
+        </ul>
+          <p>"N/A" indicates that this gene has not yet been evaluated</p>
+      </div>
+    </div>
+    <div class="col right_col">
+      <div  class="side_panel">
+        <div class="side_panel_head">
+          <h3> Links </h3>
+        </div>
+        <ul>
+            <li><a href="index.shtml">ClinGen Curation Home Page</a></li>
+            <li><a href="https://www.clinicalgenome.org">ClinGen Home Page</a></li>
+            <li><a href="help.shtml">Help with this site</a></li>
+            <li><a href="faq.shtml">FAQ</a></li>
+            <li><a href="contact.shtml" title="Contact Us">Contact Us</a></li>
+            <li><a href="https://www.surveymonkey.com/r/YJJPSFQ" target="_none" title="ClinGen FTP Site">Provide Feedback</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col ten_col">
+    <div class="subsection">
+    <div id="tabs">
+    <!--<div id="tabs" class="col subsection">-->
+      <ul>
+        <li><a href="#gene_issues">Gene Issues ({{ gene_ct }})</a></li>
+        <li><a href="#region_issues">Region Issues ({{ region_ct }})</a></li>
+      </ul>
+      <div id="gene_issues">
+        {% if gene_hit_disp %}
+        <table data-jig="ncbigrid">
+        <caption>Location search results</caption>
+          <thead>
+            <tr>
+              <th>Gene Symbol</th>
+              <th>Haploinsufficiency score</th>
+              <th>Triplosensitivity score</th>
+              <th>Curation Status</th>
+              <th>Region Location (GRCh38)</th>
+              <th>ExAC pLI</th>
+              <th>OMIM</th>
+              <th>Relationship to Submitted Location</th>
+              <th>ISCA ID</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for val in gene_hits  %}
+            <tr>
+              <td>{{ val.GENE }}</td>
+              <td>{{ val.LOSS_SCORE }}</td>
+              <td>{{ val.GAIN_SCORE }}</td>
+              <td>{{ val.CUR_STAT }}</td>
+              <td>{{ val.LOC }}</td>
+              <td>{{ val.PLI }}</td>
+              <td><a href="https://www.omim.org/entry/{{val.OMIM}}" target="_blank">{{ val.OMIM }}</a></td>
+              <td>{{ val.OL }}</td>
+              <td><a href="{{ val.LO }}">{{ val.id }}</a></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+          <h2>There are no gene issues for this query</h2>
+        {% endif %}
+      </div><!--end gene_issues-->
+      <div id="region_issues">
+        {% if reg_hit_disp %}
+        <table data-jig="ncbigrid">
+        <caption>Location search results</caption>
+          <thead>
+            <tr>
+              <th>Region Name</th>
+              <th>Haploinsufficiency score</th>
+              <th>Triplosensitivity score</th>
+              <th>Curation Status</th>
+              <th>Region Location (GRCh38)</th>
+              <th>ExAC pLI</th>
+              <th>OMIM</th>
+              <th>Relationship to Submitted Location</th>
+              <th>ISCA ID</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for val in reg_hits %}
+            <tr>
+              <td>{{ val.NAME }}</td>
+              <td>{{ val.LOSS_SCORE }}</td>
+              <td>{{ val.GAIN_SCORE }}</td>
+              <td>{{ val.CUR_STAT }}</td>
+              <td>{{ val.LOC }}</td>
+              <td>{{ val.PLI }}</td>
+              <td><a href="https://www.omim.org/entry/{{val.OMIM}}" target="_blank">{{ val.OMIM }}</a></td>
+              <td>{{ val.OL }}</td>
+              <td><a href="{{ val.LO }}">{{ val.id }}</a></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <h2>There are no region issues for this query</h2>
+        {% endif %}
+      </div><!--end region_issues-->
+    </div><!--end tabs-->
+    </div>
+    <div id="last_footnote">
+    </div>
+
+  </div><!--end ten_col-->
+</div><!--end grid-->
+</body>
+</html>

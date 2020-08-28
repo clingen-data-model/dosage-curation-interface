@@ -61,7 +61,7 @@
           <li><a href="https://www.clinicalgenome.org">ClinGen Home Page</a></li>
           <li><a href="help.shtml">Help with this site</a></li>
           <li><a href="contact.shtml" title="Contact Us">Contact Us</a></li> 
-          <li><a href="pathogenic_region.shtml" title="Pathogenic CNV regions">Pathogenic CNV regions</a></li>
+          <li><a href="recurrent_region.shtml" title="Curation of Recurrent CNVs">Curation of Recurrent CNVs</a></li>
           <li><a href="acmg.shtml" title="Curation of the ACMG 59 Genes">Curation of the ACMG 59 Genes</a></li>
           <li><a href="ftp://ftp.clinicalgenome.org" title="ClinGen FTP site">FTP</a></li>
         </ul>

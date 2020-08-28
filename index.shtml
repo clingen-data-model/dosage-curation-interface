@@ -43,9 +43,17 @@
   	var start;
   	var stop;
   	var new_loc;
+
+    var grch = $('input[name=grch]:checked', '#loc_form').val();
+
+    var url = 'https://www.ncbi.nlm.nih.gov/projects/ideogram/data/band2bp.cgi?taxid=9606&amp;assm=GRCh37';
+
+    if (grch == "38")
+      url = 'https://www.ncbi.nlm.nih.gov/projects/ideogram/data/band2bp.cgi?taxid=9606&amp;assm=GRCh38';
+
   	//console.log("Submitted Value: " + loc);
   	jQuery.ajax({
-  		url: 'https://www.ncbi.nlm.nih.gov/projects/ideogram/data/band2bp.cgi?taxid=9606&amp;assm=GRCh37',
+  		url: url,
   		data: loc,
   		contentType: 'text/csv',
   		processData: false,
@@ -64,8 +72,11 @@
   				//console.log("No cyto: " + new_loc);
   			}
   			//jQuery('#loc').val(new_loc);
-  			var url = "region_search.cgi?loc="+new_loc;
-  			window.location.href=url;
+        var newurl = "region_search.cgi?loc="+new_loc;
+        if (grch == "38")
+  			  newurl = "region_search_38.cgi?loc="+new_loc;
+
+  			window.location.href=newurl;
   		},
   		error: function(XMLHttpRequest, textStatus, errorThrown){
   			alert(errorThrown);
@@ -129,13 +140,19 @@
         <div id="location" class="data"> <!--location_search-->
           <form id="loc_form" name="loc_form" action="" method="get">
           <fieldset>
-              <legend>Search By Location (GRCh37)</legend>
+              <legend>Search By Location (GRCh37, GRCh38)</legend>
               <ol>
-              <li>
+              <li><label for="grch">GRCh37: </label>
+                <input type="radio" name="grch" action="region_search.cgi" id="grch37" value="37" checked/>
+                <label for="grch">GRCh38: </label>
+                <input type="radio" name="grch" action="region_search_38.cgi" value="38" id="grch38"/>
+              </li><li>
                   <label for="loc">Location: </label>
                   <input type="text" name="loc" action="region_search.cgi" id="loc"/>
-                  <p>example: <a href="region_search.cgi?loc=chr2:44000000-45000000">chr2:44,000,000-45,500,000</a>,
+                  <p>GRCh37 ex: <a href="region_search.cgi?loc=chr2:44000000-45000000">chr2:44,000,000-45,500,000</a>,
                       <a href="region_search.cgi?loc=chr2:41800001-55000000">2p21-2p16.2</a></p>
+                  <p>GRCH38 ex: <a href="region_search_38.cgi?loc=chr2:44000000-45000000">chr2:44,000,000-45,500,000</a>,
+                    <a href="region_search_38.cgi?loc=chr2:41800001-55000000">2p21-2p16.2</a></p>
               </li>
               <li class="test">
                   <label for="email">email:</label>
@@ -173,7 +190,7 @@
           <li><a href="help.shtml">Help with this site</a></li>
           <li><a href="faq.shtml">FAQ</a></li>
           <li><a href="contact.shtml" title="Contact Us">Contact Us</a></li>
-          <li><a href="pathogenic_region.shtml" title="Pathogenic CNV regions">Pathogenic CNV regions</a></li>
+          <li><a href="recurrent_region.shtml" title="Curation of Recurrent CNVs">Curation of Recurrent CNVs</a></li>
           <li><a href="acmg.shtml" title="Curation of the ACMG 59 Genes">Curation of the ACMG 59 Genes</a></li>
           <li><a href="ftp://ftp.clinicalgenome.org" title="ClinGen FTP Site">FTP</a></li>
         </ul>

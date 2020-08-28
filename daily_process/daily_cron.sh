@@ -42,6 +42,13 @@ if [ $? != 0 ]; then
 	eprint "DCI SCRIPT ERROR:  Region Index failed"
 fi
 
+
+echo "Running IndexRegions_38_2IDs.py" >> $log_file;
+python3 IndexRegions_38_2IDs.py  >> $log_file
+if [ $? != 0 ]; then
+	eprint "DCI SCRIPT ERROR:  Region (38) Index failed"
+fi
+
 echo "Running IndexNames2IDs.py" >> $log_file;
 python3 IndexNames2IDs.py  >> $log_file
 if [ $? != 0 ]; then
@@ -87,7 +94,9 @@ fi
 wait 
 
 mv region.idx daily_staging
+mv region38.idx daily_staging
 mv gene_overlap.idx daily_staging
+mv gene_overlap38.idx daily_staging
 mv gene_isca.idx daily_staging
 mv stats.html daily_staging
 mv ratingchange.html daily_staging 
