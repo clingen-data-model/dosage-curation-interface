@@ -21,6 +21,9 @@
 
   	jQuery('#loc_form').on('submit', processFormLoc);
 
+    jQuery('#grchex').on('click', processLinkLoc);
+
+
           var dt = new Date();
           var time_str = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate() +
                          "T" + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds() +
@@ -85,6 +88,25 @@
   	});
   	return false;
   }
+
+
+  function processLinkLoc(e) {
+
+    e.preventDefault();
+
+    var loc = $(this).attr("href");
+    
+    var grch = $('input[name=grch]:checked', '#loc_form').val();
+
+    if (grch == "38")
+      loc = loc.replace("region_search.cgi", "region_search_38.cgi");
+
+  	//console.log("Submitted Value: " + loc);
+  	
+  	window.location.href=loc;
+  		
+  	return false;
+  }
 </script>
 </head>
 <body>
@@ -144,20 +166,19 @@
               <ol>
               <li><label for="grch">GRCh37: </label>
                 <input type="radio" name="grch" action="region_search.cgi" id="grch37" value="37" checked/>
-                <label for="grch">GRCh38: </label>
+                <label for="grch" style="margin-left: 15px;">GRCh38: </label>
                 <input type="radio" name="grch" action="region_search_38.cgi" value="38" id="grch38"/>
               </li><li>
                   <label for="loc">Location: </label>
                   <input type="text" name="loc" action="region_search.cgi" id="loc"/>
-                  <p>GRCh37 ex: <a href="region_search.cgi?loc=chr2:44000000-45000000">chr2:44,000,000-45,500,000</a>,
+                  <p>Examples: <a href="region_search.cgi?loc=chr2:44000000-45000000" id="grchex">chr2:44,000,000-45,500,000</a>,
                       <a href="region_search.cgi?loc=chr2:41800001-55000000">2p21-2p16.2</a></p>
-                  <p>GRCH38 ex: <a href="region_search_38.cgi?loc=chr2:44000000-45000000">chr2:44,000,000-45,500,000</a>,
-                    <a href="region_search_38.cgi?loc=chr2:41800001-55000000">2p21-2p16.2</a></p>
               </li>
               <li class="test">
-                  <label for="email">email:</label>
+                <br /><br />
+                  <!-- <label for="email">email:</label>
                   <input type="text" name="email" id="email" />
-                  Filling out this entry will lead to submission failure.
+                  Filling out this entry will lead to submission failure. -->
               </li>
               <li>
                   <input type="submit" value="Go" />
