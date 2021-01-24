@@ -125,6 +125,10 @@
                         are dosage sensitive and should be targeted on a
                         cytogenomic array.</p>
           <p class="description">All data are shown in GRCh37 and GRCh38 coordinates.</p>
+          <p style="padding:10px; border:2px #000 solid; background:#FFB6C1; font-size:97%;" class="description">
+            <a href="https://search.clinicalgenome.org/kb/gene-dosage"
+              style="float:right; padding:10px; background:#000000; color:#fff; font-size:105%; margin-left:15px">See New Dosage Map
+            </a><b>New!</b>  The ClinGen Dosage Sensitivity curations and downloads that are available at this site are now also available at www.clinicalgenome.org.  Click on the button to access Dosage Sensitivity in the context of ClinGen's other curated information, including Gene-Disease Validity and Clinical Actionability.</p>
           <p style="padding:10px; border:2px #000 solid; background:#dae6f5; font-size:97%;" class="description">
             <a href="https://www.surveymonkey.com/r/YJJPSFQ" target="_none"
               style="float:right; padding:10px; background:#1a58a4; color:#fff; font-size:105%; margin-left:15px">Provide Feedback

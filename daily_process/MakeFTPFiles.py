@@ -105,11 +105,23 @@ def OutputLine(file_type, value_dict, issue_key):
                                          FH_LOG, issue_key, value_dict['Assignee'])
     loss_pmid_3 = isca_me_util.CleanPMID(value_dict['Loss PMID 3'],
                                          FH_LOG, issue_key, value_dict['Assignee'])
+    loss_pmid_4 = isca_me_util.CleanPMID(value_dict['Loss PMID 4'],
+                                         FH_LOG, issue_key, value_dict['Assignee'])
+    loss_pmid_5 = isca_me_util.CleanPMID(value_dict['Loss PMID 5'],
+                                         FH_LOG, issue_key, value_dict['Assignee'])
+    loss_pmid_6 = isca_me_util.CleanPMID(value_dict['Loss PMID 6'],
+                                         FH_LOG, issue_key, value_dict['Assignee'])
     gain_pmid_1 = isca_me_util.CleanPMID(value_dict['Gain PMID 1'],
                                          FH_LOG, issue_key, value_dict['Assignee'])
     gain_pmid_2 = isca_me_util.CleanPMID(value_dict['Gain PMID 2'],
                                          FH_LOG, issue_key, value_dict['Assignee'])
     gain_pmid_3 = isca_me_util.CleanPMID(value_dict['Gain PMID 3'],
+                                         FH_LOG, issue_key, value_dict['Assignee'])
+    gain_pmid_4 = isca_me_util.CleanPMID(value_dict['Gain PMID 4'],
+                                         FH_LOG, issue_key, value_dict['Assignee'])
+    gain_pmid_5 = isca_me_util.CleanPMID(value_dict['Gain PMID 5'],
+                                         FH_LOG, issue_key, value_dict['Assignee'])
+    gain_pmid_6 = isca_me_util.CleanPMID(value_dict['Gain PMID 6'],
                                          FH_LOG, issue_key, value_dict['Assignee'])
 
     # gain_loss omim
@@ -195,11 +207,13 @@ def OutputLine(file_type, value_dict, issue_key):
     elif file_type == 'REGION':
         for assembly in loc_hash.keys():
             # populate region file
-            print("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (
+            print("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (
                 issue_key, value_dict['ISCA Region Name'], value_dict['CytoBand'],
                 loc_hash[assembly]['loc'],
                 isca_loss_score, loss_text, loss_pmid_1, loss_pmid_2, loss_pmid_3,
+                loss_pmid_4, loss_pmid_5, loss_pmid_6,
                 isca_gain_score, gain_text, gain_pmid_1, gain_pmid_2, gain_pmid_3,
+                gain_pmid_4, gain_pmid_5, gain_pmid_6,
                 value_dict['Resolved'].split('T')[0].strip(),
                 ",".join(loss_omim_list), ",".join(gain_omim_list)),
                 file=loc_hash[assembly]['FH_REGION_TMP'])
@@ -233,9 +247,15 @@ if __name__ == "__main__":
     query_fields = ['Loss PMID 1',
                     'Loss PMID 2',
                     'Loss PMID 3',
+                    'Loss PMID 4',
+                    'Loss PMID 5',
+                    'Loss PMID 6',
                     'Gain PMID 1',
                     'Gain PMID 2',
                     'Gain PMID 3',
+                    'Gain PMID 4',
+                    'Gain PMID 5',
+                    'Gain PMID 6',
                     'Assignee',
                     'ISCA Haploinsufficiency score',
                     'ISCA Triplosensitivity score',
@@ -323,9 +343,11 @@ if __name__ == "__main__":
         print(("#Gene Symbol\tGene ID\tcytoBand\tGenomic Location\tHaploinsufficiency Score"
                "\tHaploinsufficiency Description\tHaploinsufficiency PMID1"
                "\tHaploinsufficiency PMID2\tHaploinsufficiency PMID3"
+               "\tHaploinsufficiency PMID4\tHaploinsufficiency PMID5\tHaploinsufficiency PMID6"
                "\tTriplosensitivity Score\tTriplosensitivity Description"
                "\tTriplosensitivity PMID1\tTriplosensitivity PMID2"
-               "\tTriplosensitivity PMID3\tDate Last Evaluated"
+               "\tTriplosensitivity PMID3\tTriplosensitivity PMID4\tTriplosensitivity PMID5"
+               "\tTriplosensitivity PMID6\tDate Last Evaluated"
                "\tLoss phenotype OMIM ID\tTriplosensitive phenotype OMIM ID"),
               file=out_hash[assembly]['FH_GENE'])
         out_hash[assembly]['FH_GENE'].flush()
@@ -348,8 +370,10 @@ if __name__ == "__main__":
         print(("#ISCA ID\tISCA Region Name\tcytoBand\tGenomic Location"
                "\tHaploinsufficiency Score\tHaploinsufficiency Description"
                "\tHaploinsufficiency PMID1\tHaploinsufficiency PMID2\tHaploinsufficiency PMID3"
+               "\tHaploinsufficiency PMID4\tHaploinsufficiency PMID5\tHaploinsufficiency PMID6"
                "\tTriplosensitivity Score\tTriplosensitivity Description"
                "\tTriplosensitivity PMID1\tTriplosensitivity PMID2\tTriplosensitivity PMID3"
+               "\tTriplosensitivity PMID4\tTriplosensitivity PMID5\tTriplosensitivity PMID6"
                "\tDate Last Evaluated\tLoss phenotype OMIM ID"
                "\tTriplosensitive phenotype OMIM ID"), file=out_hash[assembly]['FH_REGION'])
         out_hash[assembly]['FH_REGION'].flush()

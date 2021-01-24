@@ -97,6 +97,12 @@ used_list = ['Type',
              'Loss PMID 2 Description',
              'Loss PMID 3',
              'Loss PMID 3 Description',
+             'Loss PMID 4',
+             'Loss PMID 4 Description',
+             'Loss PMID 5',
+             'Loss PMID 5 Description',
+             'Loss PMID 6',
+             'Loss PMID 6 Description',
              'Loss phenotype OMIM ID',
              'Loss phenotype comments',
              'Gain PMID 1',
@@ -105,6 +111,12 @@ used_list = ['Type',
              'Gain PMID 2 Description',
              'Gain PMID 3',
              'Gain PMID 3 Description',
+             'Gain PMID 4',
+             'Gain PMID 4 Description',
+             'Gain PMID 5',
+             'Gain PMID 5 Description',
+             'Gain PMID 6',
+             'Gain PMID 6 Description',
              'Triplosensitive phenotype OMIM ID',
              'Triplosensitive phenotype comments',
              'Should be targeted?',
@@ -168,9 +180,15 @@ if target_str.startswith('Target'):
 loss_pm1 = isca_me_util.CleanPMID(value_dict['Loss PMID 1'])
 loss_pm2 = isca_me_util.CleanPMID(value_dict['Loss PMID 2'])
 loss_pm3 = isca_me_util.CleanPMID(value_dict['Loss PMID 3'])
+loss_pm4 = isca_me_util.CleanPMID(value_dict['Loss PMID 4'])
+loss_pm5 = isca_me_util.CleanPMID(value_dict['Loss PMID 5'])
+loss_pm6 = isca_me_util.CleanPMID(value_dict['Loss PMID 6'])
 gain_pm1 = isca_me_util.CleanPMID(value_dict['Gain PMID 1'])
 gain_pm2 = isca_me_util.CleanPMID(value_dict['Gain PMID 2'])
 gain_pm3 = isca_me_util.CleanPMID(value_dict['Gain PMID 3'])
+gain_pm4 = isca_me_util.CleanPMID(value_dict['Gain PMID 4'])
+gain_pm5 = isca_me_util.CleanPMID(value_dict['Gain PMID 5'])
+gain_pm6 = isca_me_util.CleanPMID(value_dict['Gain PMID 6'])
 
 # pheno_description
 loss_pheno_omim_dict, gain_pheno_omim_dict = {}, {}
@@ -236,6 +254,12 @@ c = {
      'l_pm2_com': value_dict['Loss PMID 2 Description'],
      'l_pm3': loss_pm3,
      'l_pm3_com': value_dict['Loss PMID 3 Description'],
+     'l_pm4': loss_pm4,
+     'l_pm4_com': value_dict['Loss PMID 4 Description'],
+     'l_pm5': loss_pm5,
+     'l_pm5_com': value_dict['Loss PMID 5 Description'],
+     'l_pm6': loss_pm6,
+     'l_pm6_com': value_dict['Loss PMID 6 Description'],
      'loss_phen_dict': loss_pheno_omim_dict,
      'loss_pheno_com': value_dict['Loss phenotype comments'],
      'loss_score': loss_score,
@@ -246,6 +270,12 @@ c = {
      'g_pm2_com': value_dict['Gain PMID 2 Description'],
      'g_pm3': gain_pm3,
      'g_pm3_com': value_dict['Gain PMID 3 Description'],
+     'g_pm4': gain_pm4,
+     'g_pm4_com': value_dict['Gain PMID 4 Description'],
+     'g_pm5': gain_pm5,
+     'g_pm5_com': value_dict['Gain PMID 5 Description'],
+     'g_pm6': gain_pm6,
+     'g_pm6_com': value_dict['Gain PMID 6 Description'],
      'gain_phen_dict': gain_pheno_omim_dict,
      'gain_pheno_com': value_dict['Triplosensitive phenotype comments'],
      'gain_score': gain_score,
@@ -266,9 +296,15 @@ c = {
 check_list = ['g_pm1_com',
               'g_pm2_com',
               'g_pm3_com',
+              'g_pm4_com',
+              'g_pm5_com',
+              'g_pm6_com',
               'l_pm1_com',
               'l_pm2_com',
               'l_pm3_com',
+              'l_pm4_com',
+              'l_pm5_com',
+              'l_pm6_com',
               'gain_pheno_com',
               'loss_pheno_com',
               'rec_comments']

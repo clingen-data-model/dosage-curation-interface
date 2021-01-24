@@ -233,6 +233,72 @@ var reg =/^([A-Za-z0-9_\-\.])+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
               <span class="directions">Please provide a brief description of why this paper provides evidence.</span>
               </ol>
             </fieldset>
+
+            <fieldset>
+              <legend>Dosage Sensitivity Evidence: Paper 4</legend>
+              <ol>
+              <li>
+              Select the value for which this evidence is related:
+              <input type="radio" name="dos_group4" value="forHap4" /> For Haploinsufficiency
+              <input type="radio" name="dos_group4" value="agHap4" /> Against Haploinsufficiency
+              <input type="radio" name="dos_group4" value="forTrip4" /> For Triplosensitivity
+              <input type="radio" name="dos_group4" value="agTrip4" /> Against Triplosensitivity
+              </li>
+              <li>
+              <label for="pmid3">PubMed ID 4</label>
+              <input type="text" name="pmid4" id="pmid4" />
+              <span class="directions">Enter the PubMed ID (e.g. PMID:21844811) that provides evidence for or against dosage sensitivity.</span>
+              </li>
+              <li>
+              <label for="pmid4_desc">PubMed ID 4 Description</label><br />
+              <input type="textarea" name="pmid4_desc" id="pmid4_desc" /><br />
+              <span class="directions">Please provide a brief description of why this paper provides evidence.</span>
+              </ol>
+            </fieldset>
+
+            <fieldset>
+              <legend>Dosage Sensitivity Evidence: Paper 5</legend>
+              <ol>
+              <li>
+              Select the value for which this evidence is related:
+              <input type="radio" name="dos_group5" value="forHap5" /> For Haploinsufficiency
+              <input type="radio" name="dos_group5" value="agHap5" /> Against Haploinsufficiency
+              <input type="radio" name="dos_group5" value="forTrip5" /> For Triplosensitivity
+              <input type="radio" name="dos_group5" value="agTrip5" /> Against Triplosensitivity
+              </li>
+              <li>
+              <label for="pmid5">PubMed ID 5</label>
+              <input type="text" name="pmid5" id="pmid5" />
+              <span class="directions">Enter the PubMed ID (e.g. PMID:21844811) that provides evidence for or against dosage sensitivity.</span>
+              </li>
+              <li>
+              <label for="pmid5_desc">PubMed ID 5 Description</label><br />
+              <input type="textarea" name="pmid5_desc" id="pmid5_desc" /><br />
+              <span class="directions">Please provide a brief description of why this paper provides evidence.</span>
+              </ol>
+            </fieldset>
+
+            <fieldset>
+              <legend>Dosage Sensitivity Evidence: Paper 6</legend>
+              <ol>
+              <li>
+              Select the value for which this evidence is related:
+              <input type="radio" name="dos_group6" value="forHap6" /> For Haploinsufficiency
+              <input type="radio" name="dos_group6" value="agHap6" /> Against Haploinsufficiency
+              <input type="radio" name="dos_group6" value="forTrip6" /> For Triplosensitivity
+              <input type="radio" name="dos_group6" value="agTrip6" /> Against Triplosensitivity
+              </li>
+              <li>
+              <label for="pmid6">PubMed ID 6</label>
+              <input type="text" name="pmid6" id="pmid6" />
+              <span class="directions">Enter the PubMed ID (e.g. PMID:21844811) that provides evidence for or against dosage sensitivity.</span>
+              </li>
+              <li>
+              <label for="pmid6_desc">PubMed ID 6 Description</label><br />
+              <input type="textarea" name="pmid6_desc" id="pmid6_desc" /><br />
+              <span class="directions">Please provide a brief description of why this paper provides evidence.</span>
+              </ol>
+            </fieldset>
             <input type="submit" value="submit" />
           </form>
         </div>
