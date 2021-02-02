@@ -174,12 +174,14 @@ def OutputLine(file_type, value_dict, issue_key):
         for assembly in loc_hash.keys():
             # write to gene file
             print(("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s"
-                   "\t%s\t%s\t%s\t%s\t%s\t%s\t%s") % (
+                   "\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s") % (
                 value_dict['Gene Symbol'],
                 value_dict['Link to Gene'].strip().split('/')[-1].strip(),
                 value_dict['CytoBand'], loc_hash[assembly]['loc'],
                 isca_loss_score, loss_text, loss_pmid_1, loss_pmid_2, loss_pmid_3,
+                loss_pmid_4, loss_pmid_5, loss_pmid_6,
                 isca_gain_score, gain_text, gain_pmid_1, gain_pmid_2, gain_pmid_3,
+                gain_pmid_4, gain_pmid_5, gain_pmid_6,
                 value_dict['Resolved'].split('T')[0].strip(),
                 ",".join(loss_omim_list), ",".join(gain_omim_list)),
                   file=loc_hash[assembly]['FH_GENE_TMP'])
