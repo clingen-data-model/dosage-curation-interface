@@ -19,11 +19,11 @@ nprint "FTP file generation completed"j
 grep -v "Not yet evaluated" ClinGen_triplosensitivity_gene_GRCh37.bed > ClinGen_triplosensitivity_gene_GRCh37.bed.tmp
 grep -v "Not yet evaluated" ClinGen_haploinsufficiency_gene_GRCh37.bed > ClinGen_haploinsufficiency_gene_GRCh37.bed.tmp
 grep -v "Not yet evaluated" ClinGen_region_curation_list_GRCh37.tsv > ClinGen_region_curation_list_GRCh37.tsv.tmp
-grep -v "Not yet evaluated" ClinGen_gene_curation_list_GRCh37.tsv > ClinGen_gene_curation_list_GRCh37.tsv.tmp
+#grep -v "Not yet evaluated" ClinGen_gene_curation_list_GRCh37.tsv > ClinGen_gene_curation_list_GRCh37.tsv.tmp
 grep -v "Not yet evaluated" ClinGen_triplosensitivity_gene_GRCh38.bed > ClinGen_triplosensitivity_gene_GRCh38.bed.tmp
 grep -v "Not yet evaluated" ClinGen_haploinsufficiency_gene_GRCh38.bed > ClinGen_haploinsufficiency_gene_GRCh38.bed.tmp
 grep -v "Not yet evaluated" ClinGen_region_curation_list_GRCh38.tsv > ClinGen_region_curation_list_GRCh38.tsv.tmp
-grep -v "Not yet evaluated" ClinGen_gene_curation_list_GRCh38.tsv > ClinGen_gene_curation_list_GRCh38.tsv.tmp
+#grep -v "Not yet evaluated" ClinGen_gene_curation_list_GRCh38.tsv > ClinGen_gene_curation_list_GRCh38.tsv.tmp
 
 mv ClinGen_triplosensitivity_gene_GRCh37.bed.tmp ftp_staging/ClinGen_triplosensitivity_gene_GRCh37.bed
 mv ClinGen_haploinsufficiency_gene_GRCh37.bed.tmp ftp_staging/ClinGen_haploinsufficiency_gene_GRCh37.bed
