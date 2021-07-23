@@ -28,11 +28,11 @@ grep -v "Not yet evaluated" ClinGen_region_curation_list_GRCh38.tsv > ClinGen_re
 mv ClinGen_triplosensitivity_gene_GRCh37.bed.tmp ftp_staging/ClinGen_triplosensitivity_gene_GRCh37.bed
 mv ClinGen_haploinsufficiency_gene_GRCh37.bed.tmp ftp_staging/ClinGen_haploinsufficiency_gene_GRCh37.bed
 mv ClinGen_region_curation_list_GRCh37.tsv.tmp ftp_staging/ClinGen_region_curation_list_GRCh37.tsv
-#mv ClinGen_gene_curation_list_GRCh37.tsv.tmp ftp_staging/ClinGen_gene_curation_list_GRCh37.tsv
+mv ClinGen_gene_curation_list_GRCh37.tsv ftp_staging/ClinGen_gene_curation_list_GRCh37.tsv
 mv ClinGen_triplosensitivity_gene_GRCh38.bed.tmp ftp_staging/ClinGen_triplosensitivity_gene_GRCh38.bed
 mv ClinGen_haploinsufficiency_gene_GRCh38.bed.tmp ftp_staging/ClinGen_haploinsufficiency_gene_GRCh38.bed
-mv ClinGen_region_curation_list_GRCh38.tsv.tmp ftp_staging/ClinGen_region_curation_list_GRCh38.tsv
-#mv ClinGen_gene_curation_list_GRCh38.tsv.tmp ftp_staging/ClinGen_gene_curation_list_GRCh38.tsv
+mv ClinGen_region_curation_list_GRCh38.tsv ftp_staging/ClinGen_region_curation_list_GRCh38.tsv
+mv ClinGen_gene_curation_list_GRCh38.tsv.tmp ftp_staging/ClinGen_gene_curation_list_GRCh38.tsv
 rm *.tmp *.bed *.tsv
 
 
