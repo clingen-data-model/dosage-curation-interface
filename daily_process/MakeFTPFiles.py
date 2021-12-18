@@ -125,9 +125,9 @@ def OutputLine(file_type, value_dict, issue_key):
                                          FH_LOG, issue_key, value_dict['Assignee'])
 
     # gain_loss omim
-    loss_omim_list = isca_me_util.CleanOMIM(value_dict['Loss phenotype OMIM ID'],
+    loss_omim_list = isca_me_util.CleanOMIM(value_dict['Loss Disease ID'],
                                             FH_LOG, issue_key, value_dict['Assignee'])
-    gain_omim_list = isca_me_util.CleanOMIM(value_dict['Triplosensitive phenotype OMIM ID'],
+    gain_omim_list = isca_me_util.CleanOMIM(value_dict['Triplosensitive Disease ID'],
                                             FH_LOG, issue_key, value_dict['Assignee'])
     # loc
     value_dict['GRCh37 Genome Position'] = value_dict['GRCh37 Genome Position'].replace(',', '')
@@ -267,8 +267,8 @@ if __name__ == "__main__":
                     'Link to Gene',
                     'CytoBand',
                     'Resolved',
-                    'Loss phenotype OMIM ID',
-                    'Triplosensitive phenotype OMIM ID']
+                    'Loss Disease ID',
+                    'Triplosensitive Disease ID']
 
     # GENE and Bed tmp files
     FH_GENE_GRCh37_TMP = open(GENE_FILE_GRCh37+'.tmp', 'w')

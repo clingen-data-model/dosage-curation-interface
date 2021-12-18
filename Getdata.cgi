@@ -118,7 +118,7 @@ used_list = ['Type',
              'Loss PMID 2 Description',
              'Loss PMID 3',
              'Loss PMID 3 Description',
-             'Loss phenotype OMIM ID',
+             'Loss Disease ID',
              'Loss phenotype comments',
              'Gain PMID 1',
              'Gain PMID 1 Description',
@@ -126,7 +126,7 @@ used_list = ['Type',
              'Gain PMID 2 Description',
              'Gain PMID 3',
              'Gain PMID 3 Description',
-             'Triplosensitive phenotype OMIM ID',
+             'Triplosensitive Disease ID',
              'Triplosensitive phenotype comments',
              'Should be targeted?',
              'Targeting decision based on',
@@ -189,13 +189,17 @@ gain_pm3 = isca_me_util.CleanPMID(value_dict['Gain PMID 3'])
 
 # pheno_description
 loss_pheno_omim_dict, gain_pheno_omim_dict = {}, {}
-temp_loss_omim_list = isca_me_util.CleanOMIM(value_dict['Loss phenotype OMIM ID'])
+#temp_loss_omim_list = isca_me_util.CleanOMIM(value_dict['Loss Disease ID'])
+temp_loss_omim_list = []
+temp_loss_omim_list.append(value_dict['Loss Disease ID'])
 for item in temp_loss_omim_list:
     if item in mim_dict:
         loss_pheno_omim_dict[item] = mim_dict[item]
 
 gain_pheno_desc, gain_pheno_omim = [], []
-temp_gain_omim_list = isca_me_util.CleanOMIM(value_dict['Triplosensitive phenotype OMIM ID'])
+#temp_gain_omim_list = isca_me_util.CleanOMIM(value_dict['Triplosensitive Disease ID'])
+temp_gain_omim_list = []
+temp_gain_omim_list.append(value_dict['Triplosensitive Disease ID'])
 for item in temp_gain_omim_list:
     if item in mim_dict:
         gain_pheno_omim_dict[item] = mim_dict[item]
